@@ -1,7 +1,8 @@
+import React from 'react';
 import Navbar from './Navbar';
 import Home from './Home';
 import Login from './Login';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
@@ -9,14 +10,10 @@ function App() {
       <div className="App">
         <div className="contents">
           <Navbar />
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path="/login">
-              <Login />
-            </Route>
-          </Switch>
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
         </div>
       </div>
     </Router>

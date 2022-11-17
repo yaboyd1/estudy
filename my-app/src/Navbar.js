@@ -5,12 +5,14 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="logo">
-        <img src={require('./imgs/estudy_logo.png')} alt="logo" />
+        <Link to="/">
+          <img src={require('./imgs/estudy_logo.png')} alt="logo" />
+        </Link>
       </div>
       <div className="links">
         <Link to="/">Home</Link>
         <Link to="/login">Login</Link>
-        <Link to="/login">Sign Up</Link>
+        <Link to="/signup ">Sign Up</Link>
       </div>
     </nav>
   );

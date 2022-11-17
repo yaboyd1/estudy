@@ -1,0 +1,54 @@
+.form {
+  width: 35rem;
+  margin: 30px auto;
+  padding: 2.5rem;
+  border: 1px solid #89a2d3;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+label {
+  position: relative;
+  right: 160px;
+  color: #03aad0;
+  font-size: 0.95rem;
+  background-color: white;
+  height: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#usrname,
+#pwd {
+  color: black;
+  outline: none;
+  width: 400px;
+  padding: 0.625rem 10px;
+  font-size: 1rem;
+  letter-spacing: 0.062rem;
+  margin-bottom: 1.875rem;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  transition: 0.5s;
+}
+
+#usrname:focus,
+#pwd:focus {
+  border: 2px solid #555;
+}
+
+#submit {
+  border: none;
+  color: #fff;
+  background-color: rgb(239, 197, 9);
+  padding: 0.625rem 1.25rem;
+  cursor: pointer;
+  border-radius: 0.312rem;
+  font-size: 1rem;
+}
+
+#submit:hover {
+  background-color: rgb(165, 141, 33);
+  box-shadow: 0 1px 1px 0 rgba(165, 141, 33, 0.4),
+    0 1px 3px 1px rgba(165, 141, 33, 0.289);
+}

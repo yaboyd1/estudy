@@ -1,19 +1,15 @@
-function Navbar(props) {
+import { Link } from 'react-router-dom';
+
+function Navbar() {
   return (
     <nav className="navbar">
       <div className="logo">
         <img src={require('./imgs/estudy_logo.png')} alt="logo" />
       </div>
       <div className="links">
-        <a href="/" className="home">
-          Home
-        </a>
-        <a href="/" className="login">
-          Login
-        </a>
-        <a href="/" className="sign-up">
-          Sign Up
-        </a>
+        <Link to="/">Home</Link>
+        <Link to="/login">Login</Link>
+        <Link to="/login">Sign Up</Link>
       </div>
     </nav>
   );

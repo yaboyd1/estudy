@@ -40,7 +40,7 @@ label {
 #submit {
   border: none;
   color: #fff;
-  background-color: rgb(239, 197, 9);
+  background-color: #7f5af0;
   padding: 0.625rem 1.25rem;
   cursor: pointer;
   border-radius: 0.312rem;
@@ -48,7 +48,7 @@ label {
 }
 
 #submit:hover {
-  background-color: rgb(165, 141, 33);
+  background-color: #482c9f;
   box-shadow: 0 1px 1px 0 rgba(165, 141, 33, 0.4),
     0 1px 3px 1px rgba(165, 141, 33, 0.289);
 }

@@ -1,9 +1,9 @@
 .navbar {
   height: 100px;
   line-height: 100px;
-  background-color: rgb(239, 197, 9);
   overflow: hidden;
   display: flex;
+  background-color: #7f5af0;
 }
 
 .logo img {
@@ -21,8 +21,8 @@
   padding: 40px;
   justify-content: space-around;
   text-decoration: none;
-  color: white;
-  transition: 1s ease-out;
+  color: #c1c1ba;
+  transition: 0.5s ease-out;
 }
 
 .links a:hover {

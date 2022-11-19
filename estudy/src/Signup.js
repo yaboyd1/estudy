@@ -3,7 +3,7 @@ import React from 'react';
 function Signup() {
   return (
     <div className="form">
-      <h1>Sign up</h1>
+      <h1 className="text-3xl">Sign up</h1>
       <form>
         <br />
         <label htmlFor="usrname">Username</label>

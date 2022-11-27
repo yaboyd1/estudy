@@ -34,33 +34,31 @@ Each team member will need to do this on their local machine.
 The project-starter template expects the following for local development:
 
 - PostgreSQL User/Role
-  - name: `ctp_user`
-  - password: `ctp_pass`
+  - name: `team-meeter`
+  - password: `ctp2022`
 - PostgreSQL Database
-  - name: `ctp_appdb_development`
+  - name: `estudy`
 
 #### For Windows/pgAdmin users
 
-If you are on Windows and installed **pgAdmin** follow our [pgAdmin guide](https://github.com/CUNYTechPrep/guides/blob/master/pgAdmin-create-user-db.md) to create a user in PostgreSQL named `ctp_user` with the password `ctp_pass` and a database named `ctp_appdb_development`.
+If you are on Windows and installed **pgAdmin** follow our [pgAdmin guide](https://github.com/CUNYTechPrep/guides/blob/master/pgAdmin-create-user-db.md) to create a user in PostgreSQL named `team-meeter` with the password `ctp2022` and a database named `estudy`.
 
 #### For Mac/Linux users
 
-Create a user in PostgreSQL named `ctp_user` with the password `ctp_pass`:
+Create a user in PostgreSQL named `team-meeter` with the password `ctp2022`:
 
 > This only needs to be done one time on your machine
 > You can create additional users if you want to.
 
 ```
-createuser -P -s -e ctp_user
+createuser -P -s -e team-meeter
 ```
 
 Create a separate db for this project:
 
 ```
-createdb -h localhost -U ctp_user ctp_appdb_development
+createdb -h localhost -U team-meeter estudy
 ```
-
-> You will create a DB for each project you start based on this repo. For other projects change `ctp_appdb_development` to the new apps database name.
 
 ### Running the app locally
 

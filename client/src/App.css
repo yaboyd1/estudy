@@ -11,6 +11,10 @@ body {
   background-color: #7f5af0;
 }
 
+.container-fluid {
+  flex-wrap: nowrap !important;
+}
+
 .logo {
   max-width: 120px;
 }
@@ -19,16 +23,33 @@ body {
   opacity: 0.6;
 }
 
-.nav-link {
-  margin: 0 10px;
+.login-welcome {
+  width: 100%;
+  text-align: right;
+  margin-right: 10px;
 }
 
-.nav-link:nth-child(3) {
-  margin-right: 20px;
+.dropdown-menu {
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.863);
 }
 
 .btn-dropdown {
-  margin-right: 60px;
+  margin-right: 80px;
+  background-color: rgba(255, 255, 255, 0.271) !important;
+}
+
+.nav-item {
+  margin: 4px 0;
+  cursor: pointer;
+}
+
+.nav-item:hover {
+  background-color: aliceblue;
+}
+
+.btn-login {
+  margin-top: 20px;
 }
 
 /* Home */

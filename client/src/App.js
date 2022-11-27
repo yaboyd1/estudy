@@ -8,6 +8,7 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import { AuthProvider } from './context/AuthContext';
 import AuthButton from './components/AuthButton';
+import Greeting from './components/Greeting';
 import Home from './pages/Home';
 
 import './App.css';
@@ -24,6 +25,7 @@ function Navigation() {
             alt=""
           />
         </Link>
+        <Greeting />
         <div className="dropdown">
           <button
             className="btn btn-dropdown btn-secondary dropdown-toggle"
@@ -31,12 +33,12 @@ function Navigation() {
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            Informations
+            Menu
           </button>
           <ul className="dropdown-menu">
             <li className="nav-item">
               <NavLink className="nav-link" to="/posts/new">
-                Create a Micro Post
+                Create a Post
               </NavLink>
             </li>
             <li className="nav-item">

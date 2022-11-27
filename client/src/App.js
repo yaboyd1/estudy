@@ -43,6 +43,16 @@ function Navigation() {
 
           <AuthButton />
         </ul>
+          <div className="dropdown">
+            <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown button
+            </button>
+            <ul className="dropdown-menu">
+              <li>Action</li>
+              <li>Another action</li>
+              <li>Something else here</li>
+            </ul>
+          </div>
       </div>
     </nav>
   );

@@ -1,6 +1,6 @@
-import React from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import React from 'react';
+import { useNavigate, NavLink } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const AuthButton = () => {
   const auth = useAuth();
@@ -8,14 +8,14 @@ const AuthButton = () => {
 
   if (!auth.isAuthenticated) {
     return (
-      <Link className="btn btn-primary" to="/login">
+      <NavLink className="nav-link" to="/login">
         Login
-      </Link>
+      </NavLink>
     );
   }
 
   const logout = () => {
-    auth.signout().then(() => navigate("/"));
+    auth.signout().then(() => navigate('/'));
   };
 
   return (

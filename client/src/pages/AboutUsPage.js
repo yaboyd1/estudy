@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
-function AboutUsPage(props) {
+function AboutUsPage() {
   return (
     <>
-      <div className="col text-center">
+      <div className="about-us col text-center">
         <h2 className="mb-3">About our project</h2>
         <p className="mb-5">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
-function LoginPage() {
+function SignupPage() {
   const auth = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -18,7 +18,7 @@ function LoginPage() {
     };
   };
 
-  const login = async (e) => {
+  const signup = async (e) => {
     e.preventDefault();
     let { email, password } = data;
 
@@ -43,19 +43,19 @@ function LoginPage() {
   if (error) {
     errorMessage = (
       <div className="alert alert-danger" role="alert">
-        Login Failed
+        Sign Up Failed
       </div>
     );
   }
 
   return (
     <div className="col-10 col-md-8 col-lg-7">
-      <form onSubmit={login}>
+      <form onSubmit={signup}>
         <div className="form-row">
           {errorMessage}
           <input
             type="email"
-            className="form-control p-2 m-2"
+            className="form-control"
             name="email"
             placeholder="Email"
             value={data.email}
@@ -63,14 +63,14 @@ function LoginPage() {
           />
           <input
             type="password"
-            className="form-control p-2 m-2"
+            className="form-control"
             name="password"
             placeholder="Password"
             value={data.password}
             onChange={fieldChanged('password')}
           />
           <button type="submit" className="btn btn-primary ml-auto">
-            Login
+            Sign up
           </button>
         </div>
       </form>
@@ -78,4 +78,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default SignupPage;

@@ -6,7 +6,7 @@ function LoginPage() {
   const auth = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const [data, setData] = useState({ email: '', password: '' });
+  const [data, setData] = useState({ username: '', password: '' });
   const [error, setError] = useState(false);
 
   const from = location.state?.from?.pathname || '/';
@@ -20,10 +20,10 @@ function LoginPage() {
 
   const login = async (e) => {
     e.preventDefault();
-    let { email, password } = data;
+    let { username, password } = data;
 
     try {
-      await auth.authenticate(email, password);
+      await auth.authenticate(username, password);
       // setRedirectToReferrer(true); // used in react-router v5
       // in react-router v6 navigate changes the pages directly.
       // comment from official docs example:
@@ -54,12 +54,12 @@ function LoginPage() {
         <div className="form-row">
           {errorMessage}
           <input
-            type="email"
+            type="username"
             className="form-control p-2 m-2"
-            name="email"
-            placeholder="Email"
-            value={data.email}
-            onChange={fieldChanged('email')}
+            name="username"
+            placeholder="Username"
+            value={data.username}
+            onChange={fieldChanged('username')}
           />
           <input
             type="password"

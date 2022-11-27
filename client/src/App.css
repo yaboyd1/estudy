@@ -27,6 +27,10 @@ body {
   margin-right: 20px;
 }
 
+.btn-dropdown {
+  margin-right: 60px;
+}
+
 /* Home */
 .header {
   margin: 40px 0;

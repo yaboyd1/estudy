@@ -11,18 +11,18 @@ function passwordsMatch(submittedPassword, storedPasswordHash) {
 /*
   The following code runs at login time.
   The usernameField and passwordField options refer to the HTTP requests
-  body parameter names. I've set this to look for an `email` parameter,
-  but you may prefer to use a `username` parameter instead of an email.
+  body parameter names. I've set this to look for an `username` parameter,
+  but you may prefer to use a `username` parameter instead of an username.
   BEST PRACTICE: don't state why login failed to the user.
 */
 passport.use(
   new LocalStrategy(
     {
-      usernameField: "email",
+      usernameField: "username",
       passwordField: "password",
     },
-    (email, password, done) => {
-      User.findOne({ where: { email } })
+    (username, password, done) => {
+      User.findOne({ where: { username } })
         .then((user) => {
           if (!user) {
             console.log("\n\nFailed Login: user does not exist\n\n");

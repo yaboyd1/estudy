@@ -1,14 +1,14 @@
 {
   "development": {
-    "username": "kevin",
-    "password": "testing",
+    "username": "team-meeter",
+    "password": "ctp2022",
     "database": "estudy",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
-    "username": "kevin",
-    "password": "testing",
+    "username": "team-meeter",
+    "password": "ctp2022",
     "database": "estudy",
     "host": "127.0.0.1",
     "dialect": "postgres"

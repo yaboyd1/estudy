@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Suez+One&display=swap');
+
+body {
+  background-color: black;
+  font-family: 'Suez One', serif;
+  background-color: #16161a;
+}
+
+/* Navigation */
+.navbar {
+  background-color: #7f5af0;
+}
+
+.logo {
+  max-width: 120px;
+}
+
+.logo:hover {
+  opacity: 0.6;
+}
+
+.nav-link {
+  margin: 0 10px;
+}
+
+.nav-link:nth-child(3) {
+  margin-right: 20px;
+}
+
+/* Home */
+.header {
+  margin: 40px 0;
+}
+
+.img-section {
+  height: 300px;
+}
+
+.head-1 {
+  width: 85%;
+  overflow: hidden; /* Ensures the content is not revealed */
+  border-right: 0.1em solid white; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: 0.15em; /* Adjust as needed */
+  animation: typing 2.5s steps(25, end), blink-effect 0.3s infinite;
+  animation-iteration-count: infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 42%;
+  }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-effect {
+  from,
+  to {
+    border-color: transparent;
+  }
+  10% {
+    border-color: white;
+  }
+}
+
+@keyframes loop {
+  100% {
+    animation-iteration-count: infinite;
+  }
+}
+
+/* About us */
+.about-us {
+  color: white;
+}
+
+/* Login | Sign up */
+.form-control {
+  border-radius: 0;
+}
+
+.btn {
+  background-color: #7f5af0;
+}
+
+.btn:hover {
+  background-color: #7f5af0b4;
+}

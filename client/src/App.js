@@ -24,35 +24,35 @@ function Navigation() {
             alt=""
           />
         </Link>
-        <ul className="navbar-nav">
-          <li className="nav-item">
-            <NavLink className="nav-link" to="/posts/new">
-              Create a Micro Post
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink className="nav-link" to="/about-us">
-              About Us
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink className="nav-link" to="/signup">
-              Sign Up
-            </NavLink>
-          </li>
+        <div className="dropdown">
+          <button
+            className="btn btn-dropdown btn-secondary dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Informations
+          </button>
+          <ul className="dropdown-menu">
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/posts/new">
+                Create a Micro Post
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/about-us">
+                About Us
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/signup">
+                Sign Up
+              </NavLink>
+            </li>
 
-          <AuthButton />
-        </ul>
-          <div className="dropdown">
-            <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown button
-            </button>
-            <ul className="dropdown-menu">
-              <li>Action</li>
-              <li>Another action</li>
-              <li>Something else here</li>
-            </ul>
-          </div>
+            <AuthButton />
+          </ul>
+        </div>
       </div>
     </nav>
   );

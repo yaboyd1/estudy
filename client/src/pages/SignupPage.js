@@ -55,15 +55,15 @@ function SignupPage() {
           {errorMessage}
           <input
             type="username"
-            className="form-control"
+            className="form-control p-2 m-2"
             name="username"
-            placeholder="username"
+            placeholder="Username"
             value={data.username}
             onChange={fieldChanged('username')}
           />
           <input
             type="password"
-            className="form-control"
+            className="form-control p-2 m-2"
             name="password"
             placeholder="Password"
             value={data.password}

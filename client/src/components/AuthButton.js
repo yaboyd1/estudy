@@ -9,7 +9,7 @@ const AuthButton = () => {
   if (!auth.isAuthenticated) {
     return (
       <NavLink className="nav-link" to="/login">
-        Login
+        <button className="btn btn-login btn-primary">Login</button>
       </NavLink>
     );
   }

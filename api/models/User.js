@@ -16,6 +16,10 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       passwordHash: { type: DataTypes.STRING },
+      role: { 
+        type: DataTypes.STRING,
+        isIn: [['admin', 'participant']],
+      },
       password: {
         type: DataTypes.VIRTUAL,
         validate: {
@@ -34,7 +38,9 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   User.associate = (models) => {
-    // associations can be defined here
+    User.belongsTo(models.Room, {
+      foreignKey: 'roomId'
+    });
   };
 
   User.beforeSave((user, options) => {

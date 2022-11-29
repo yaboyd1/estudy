@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, useEffect, createContext } from 'react';
 
 const AuthContext = createContext();
 const { Provider } = AuthContext;
@@ -9,10 +9,10 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     async function checkIfUserIsLoggedIn() {
       try {
-        let response = await fetch("/api/auth/login");
+        let response = await fetch('/api/auth/login');
 
         if (!response.ok) {
-          throw new Error("Unauthenticated");
+          throw new Error('Unauthenticated');
         }
 
         let fetchedUser = await response.json();
@@ -30,16 +30,16 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const authenticate = async (username, password) => {
-    let response = await fetch("/api/auth/login", {
-      method: "POST",
+    let response = await fetch('/api/auth/login', {
+      method: 'POST',
       body: JSON.stringify({ username, password }),
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     });
 
     if (!response.ok) {
-      throw new Error("Login Failed");
+      throw new Error('Login Failed');
     }
 
     let loggedInUser = await response.json();
@@ -49,16 +49,16 @@ const AuthProvider = ({ children }) => {
   };
 
   const signup = async (username, password) => {
-    let response = await fetch("/api/auth/signup", {
-      method: "POST",
+    let response = await fetch('/api/auth/signup', {
+      method: 'POST',
       body: JSON.stringify({ username, password }),
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     });
 
     if (!response.ok) {
-      throw new Error("Signup Failed");
+      throw new Error('Signup Failed');
     }
 
     let loggedInUser = await response.json();
@@ -68,14 +68,14 @@ const AuthProvider = ({ children }) => {
   };
 
   const signout = async () => {
-    let response = await fetch("/api/auth/logout", {
-      method: "POST",
+    let response = await fetch('/api/auth/logout', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     });
     if (!response.ok) {
-      throw new Error("Logout Failed");
+      throw new Error('Logout Failed');
     }
 
     let body = await response.json();

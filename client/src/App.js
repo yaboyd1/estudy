@@ -11,6 +11,7 @@ import { AuthProvider } from './context/AuthContext';
 import AuthButton from './components/AuthButton';
 import Greeting from './components/Greeting';
 import Home from './pages/Home';
+import CreateRoom from './pages/CreateRoom';
 
 import './App.css';
 import PrivateRouteRequiresAuth from './components/PrivateRouteRequiresAuth';
@@ -52,11 +53,6 @@ function Navigation() {
                 Sign Up
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/session">
-                Session
-              </NavLink>
-            </li>
 
             <AuthButton />
           </ul>
@@ -90,6 +86,15 @@ function App() {
                   <PrivateRouteRequiresAuth>
                     {/* In react-router v6 we protect routes like this */}
                     <PostFormPage />
+                  </PrivateRouteRequiresAuth>
+                }
+              />
+              <Route
+                path="/create-room"
+                element={
+                  <PrivateRouteRequiresAuth>
+                    {}
+                    <CreateRoom />
                   </PrivateRouteRequiresAuth>
                 }
               />

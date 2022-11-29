@@ -26,19 +26,19 @@ function Home() {
             quaerat aliquam saepe consectetur ipsam.
           </p>
           <img
-            className="img-section  p-2 rounded border border-secondary"
+            className="img-section p-2 rounded"
             src={require('../imgs/online_education2.png')}
             alt="online education"
           />
         </div>
         <br />
         <div className="content d-flex justify-content-center">
-          <p className="text-center  p-2">
+          <p className="text-center p-2">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
             assumenda modi sapiente totam? Soluta asperiores a unde molestias
           </p>
           <img
-            className="img-section   p-2 rounded border border-secondary"
+            className="img-section p-2"
             src={require('../imgs/online_education3.png')}
             alt="online education"
           />

@@ -8,7 +8,7 @@ body {
 
 /* Navigation */
 .navbar {
-  background-color: #7f5af0;
+  background-color: #7f5af0b4;
 }
 
 .container-fluid {
@@ -29,13 +29,25 @@ body {
   margin-right: 10px;
 }
 
+.session {
+  order: 3;
+  margin-right: 10px;
+  color: white;
+  text-decoration: none;
+}
+
+.session:hover {
+  color: rgba(255, 255, 255, 0.697);
+  text-decoration: underline;
+}
+
 .dropdown-menu {
   padding: 10px;
   background-color: rgba(255, 255, 255, 0.863);
 }
 
 .btn-dropdown {
-  margin-right: 80px;
+  margin-right: 40px;
   background-color: rgba(255, 255, 255, 0.271) !important;
 }
 

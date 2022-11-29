@@ -9,9 +9,14 @@ const AuthButton = () => {
   }
 
   return (
-    <div className="login-welcome text-white">
-      Welcome,&nbsp;&nbsp;{auth.user.username}!
-    </div>
+    <>
+      <div className="login-welcome text-white">
+        Welcome,&nbsp;&nbsp;{auth.user.username}!
+      </div>
+      <NavLink className="session" to="/session">
+        Session
+      </NavLink>
+    </>
   );
 };
 

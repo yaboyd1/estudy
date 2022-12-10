@@ -1,7 +1,7 @@
-const express = require("express");
-const passport = require("../middlewares/authentication");
+const express = require('express');
+const passport = require('../middlewares/authentication');
 const router = express.Router();
-const db = require("../models");
+const db = require('../models');
 const { MicroPost } = db;
 
 // This is a simple example for providing basic CRUD routes for
@@ -17,11 +17,11 @@ const { MicroPost } = db;
 //    /api comes from the file ../app.js
 //    /micro_posts comes from the file ./microPosts.js
 
-router.get("/", (req, res) => {
+router.get('/', (req, res) => {
   MicroPost.findAll({}).then((allPosts) => res.json(allPosts));
 });
 
-router.post("/", passport.isAuthenticated(), (req, res) => {
+router.post('/', passport.isAuthenticated(), (req, res) => {
   let { content } = req.body;
 
   MicroPost.create({ content })
@@ -33,7 +33,7 @@ router.post("/", passport.isAuthenticated(), (req, res) => {
     });
 });
 
-router.get("/:id", (req, res) => {
+router.get('/:id', (req, res) => {
   const { id } = req.params;
   MicroPost.findByPk(id).then((mpost) => {
     if (!mpost) {
@@ -44,7 +44,7 @@ router.get("/:id", (req, res) => {
   });
 });
 
-router.put("/:id", passport.isAuthenticated(), (req, res) => {
+router.put('/:id', passport.isAuthenticated(), (req, res) => {
   const { id } = req.params;
   MicroPost.findByPk(id).then((mpost) => {
     if (!mpost) {
@@ -63,7 +63,7 @@ router.put("/:id", passport.isAuthenticated(), (req, res) => {
   });
 });
 
-router.delete("/:id", passport.isAuthenticated(), (req, res) => {
+router.delete('/:id', passport.isAuthenticated(), (req, res) => {
   const { id } = req.params;
   MicroPost.findByPk(id).then((mpost) => {
     if (!mpost) {

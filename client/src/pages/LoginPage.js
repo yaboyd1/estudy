@@ -69,7 +69,7 @@ function LoginPage() {
             value={data.password}
             onChange={fieldChanged('password')}
           />
-          <button type="submit" className="btn text-white ml-auto p-3 mt-4">
+          <button type="submit" className="btn text-white p-3 mt-4">
             Login
           </button>
         </div>

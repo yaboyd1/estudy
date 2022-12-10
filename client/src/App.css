@@ -13,6 +13,8 @@ body {
 
 .container-fluid {
   flex-wrap: nowrap !important;
+  width: 95%;
+  margin-left: 10px;
 }
 
 .logo {
@@ -41,16 +43,15 @@ body {
   text-decoration: underline;
 }
 
+.btn-dropdown {
+  margin-right: 20px;
+  background-color: rgba(255, 255, 255, 0.271) !important;
+}
+
 .dropdown-menu {
   padding: 10px;
   background-color: rgba(255, 255, 255, 0.863);
 }
-
-.btn-dropdown {
-  margin-right: 40px;
-  background-color: rgba(255, 255, 255, 0.271) !important;
-}
-
 .nav-item {
   margin: 4px 0;
   cursor: pointer;

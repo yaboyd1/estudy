@@ -7,7 +7,7 @@ function Home() {
       <div className="container-home rounded">
         <h2 className="header text-center">Welcome to e-Study!</h2>
         <div className="content justify-content-center">
-          <p className=" p-2">
+          <p className="p-2">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
             assumenda modi sapiente totam? Soluta asperiores a unde molestias
           </p>

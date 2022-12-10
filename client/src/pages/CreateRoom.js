@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { Navigate } from 'react-router-dom';
+import ErrorAlert from '../components/ErrorAlert';
 
 function CreateRoom() {
-  const auth = useAuth();
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [data, setData] = useState({ roomName: '', desc: '' });
+  const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
-
-  const from = location.state?.from?.pathname || '/session';
+  const [data, setData] = useState({ roomName: '', url: '' });
 
   const fieldChanged = (name) => {
     return (event) => {
@@ -18,61 +14,48 @@ function CreateRoom() {
     };
   };
 
-  const login = async (e) => {
-    e.preventDefault();
-    let { roomName, desc } = data;
-
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     try {
-      await auth.authenticate(roomName, desc);
-      // setRedirectToReferrer(true); // used in react-router v5
-      // in react-router v6 navigate changes the pages directly.
-      // comment from official docs example:
-      //    Send them back to the page they tried to visit when they were
-      //    redirected to the login page. Use { replace: true } so we don't create
-      //    another entry in the history stack for the login page.  This means that
-      //    when they get to the protected page and click the back button, they
-      //    won't end up back on the login page, which is also really nice for the
-      //    user experience.
-      navigate(from, { replace: true });
+      let response = await fetch('/api/rooms', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: data.roomName,
+        }),
+      });
+
+      if (response.ok) {
+        setSuccess(true);
+      } else {
+        setError(true);
+      }
     } catch (error) {
+      console.error('Server error while creating room', error);
       setError(true);
     }
   };
 
-  let errorMessage = '';
-  if (error) {
-    errorMessage = (
-      <div className="alert alert-danger" role="alert">
-        Login Failed
-      </div>
-    );
-  }
+  if (success) return <Navigate to={'/' + data.roomName} />;
 
   return (
     <div className="col-10 col-md-8 col-lg-7">
-      <form onSubmit={login}>
-        <div className="form-row">
-          {errorMessage}
-          <input
-            type="text"
-            className="form-control p-2 m-2"
-            name="roomName"
-            placeholder="Room Name"
-            value={data.roomName}
-            onChange={fieldChanged('roomName')}
-          />
-          <input
-            type="text"
-            className="form-control p-2 m-2"
-            name="desc"
-            placeholder="Room description"
-            value={data.desc}
-            onChange={fieldChanged('desc')}
-          />
-          <button type="submit" className="btn text-white ml-auto p-3 mt-4">
-            Create Room
-          </button>
-        </div>
+      {error && <ErrorAlert details={'Failed to create room'} />}
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          className="form-control p-2 m-2"
+          name="roomName"
+          placeholder="Room Name"
+          value={data.roomName}
+          onChange={fieldChanged('roomName')}
+        />
+        <button type="submit" className="btn text-white p-3 mt-4">
+          Create Room
+        </button>
       </form>
     </div>
   );

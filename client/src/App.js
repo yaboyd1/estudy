@@ -12,7 +12,7 @@ import AuthButton from './components/AuthButton';
 import Greeting from './components/Greeting';
 import Home from './pages/Home';
 import CreateRoom from './pages/CreateRoom';
-
+import Room from './pages/Room';
 import './App.css';
 import PrivateRouteRequiresAuth from './components/PrivateRouteRequiresAuth';
 
@@ -40,7 +40,7 @@ function Navigation() {
           <ul className="dropdown-menu">
             <li className="nav-item">
               <NavLink className="nav-link" to="/posts/new">
-                Create a Post
+                Global Chat
               </NavLink>
             </li>
             <li className="nav-item">
@@ -75,7 +75,6 @@ function App() {
                 path="/session"
                 element={
                   <PrivateRouteRequiresAuth>
-                    {}
                     <AfterLoginPage />
                   </PrivateRouteRequiresAuth>
                 }
@@ -93,8 +92,15 @@ function App() {
                 path="/create-room"
                 element={
                   <PrivateRouteRequiresAuth>
-                    {}
                     <CreateRoom />
+                  </PrivateRouteRequiresAuth>
+                }
+              />
+              <Route
+                path="/room"
+                element={
+                  <PrivateRouteRequiresAuth>
+                    <Room />
                   </PrivateRouteRequiresAuth>
                 }
               />
@@ -102,7 +108,7 @@ function App() {
               <Route path="/posts/:id" element={<ShowPostPage />} />
               <Route path="/about-us" element={<AboutUsPage />} />
               <Route path="/" element={<Home />} />
-              <Route path="/" element={<PostsListPage />} />
+              <Route path="/post/new" element={<PostsListPage />} />
             </Routes>
           </div>
         </div>

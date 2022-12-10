@@ -1,8 +1,8 @@
-const bcrypt = require("bcryptjs");
-const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
+const bcrypt = require('bcryptjs');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 
-const { User } = require("../models");
+const { User } = require('../models');
 
 function passwordsMatch(submittedPassword, storedPasswordHash) {
   return bcrypt.compareSync(submittedPassword, storedPasswordHash);
@@ -18,24 +18,24 @@ function passwordsMatch(submittedPassword, storedPasswordHash) {
 passport.use(
   new LocalStrategy(
     {
-      usernameField: "username",
-      passwordField: "password",
+      usernameField: 'username',
+      passwordField: 'password',
     },
     (username, password, done) => {
       User.findOne({ where: { username } })
         .then((user) => {
           if (!user) {
-            console.log("\n\nFailed Login: user does not exist\n\n");
-            return done(null, false, { message: "Failed Login" });
+            console.log('\n\nFailed Login: user does not exist\n\n');
+            return done(null, false, { message: 'Failed Login' });
           }
 
           if (passwordsMatch(password, user.passwordHash) === false) {
-            console.log("\n\nFailed Login: passwords did not match\n\n");
-            return done(null, false, { message: "Failed Login" });
+            console.log('\n\nFailed Login: passwords did not match\n\n');
+            return done(null, false, { message: 'Failed Login' });
           }
 
-          console.log("\n\nSuccessful Login\n\n");
-          return done(null, user, { message: "Successfully Logged In!" });
+          console.log('\n\nSuccessful Login\n\n');
+          return done(null, user, { message: 'Successfully Logged In!' });
         })
         .catch((err) => {
           return done(err);

@@ -1,7 +1,7 @@
-const express = require("express");
-const passport = require("../middlewares/authentication");
+const express = require('express');
+const passport = require('../middlewares/authentication');
 const router = express.Router();
-const db = require("../models");
+const db = require('../models');
 
 const { Room, User } = db;
 
@@ -21,27 +21,29 @@ const { Room, User } = db;
 // @desc    Get all rooms
 // @route   GET /api/rooms
 // @access  Private
-router.get("/", passport.isAuthenticated(), (req, res) => {
+router.get('/', passport.isAuthenticated(), (req, res) => {
   Room.findAll({}).then((allPosts) => res.json(allPosts));
 });
 
 // @desc    Create a room and assign the room id to the user
 // @route   POST /api/rooms
 // @access  Private
-router.post("/", passport.isAuthenticated(), (req, res) => {
+router.post('/', passport.isAuthenticated(), (req, res) => {
   let { name } = req.body;
   const path = encodeURI(name);
   Room.create({ name, url: path })
     .then((newRoom) => {
-      User.update({ 
-        roomId: newRoom.id,           
-        role: 'founder'
-      }, 
-      {
-        where: {
-          id: req.user.id
+      User.update(
+        {
+          roomId: newRoom.id,
+          role: 'founder',
+        },
+        {
+          where: {
+            id: req.user.id,
+          },
         }
-      });
+      );
       res.status(201).json(newRoom);
     })
     .catch((err) => {
@@ -49,7 +51,7 @@ router.post("/", passport.isAuthenticated(), (req, res) => {
     });
 });
 
-router.get("/:id", (req, res) => {
+router.get('/:id', (req, res) => {
   const { id } = req.params;
   Room.findByPk(id).then((room) => {
     if (!room) {
@@ -60,7 +62,7 @@ router.get("/:id", (req, res) => {
   });
 });
 
-router.put("/:id", passport.isAuthenticated(), (req, res) => {
+router.put('/:id', passport.isAuthenticated(), (req, res) => {
   const { id } = req.params;
   Room.findByPk(id).then((room) => {
     if (!room) {
@@ -79,7 +81,7 @@ router.put("/:id", passport.isAuthenticated(), (req, res) => {
   });
 });
 
-router.delete("/:id", passport.isAuthenticated(), (req, res) => {
+router.delete('/:id', passport.isAuthenticated(), (req, res) => {
   const { id } = req.params;
   Room.findByPk(id).then((room) => {
     if (!room) {

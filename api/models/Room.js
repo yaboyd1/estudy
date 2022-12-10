@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
 
   Room.associate = (models) => {
     Room.hasMany(models.User, {
-      foreignKey: 'roomId'
+      foreignKey: 'roomId',
     });
   };
 

@@ -14,7 +14,7 @@ const AuthButton = () => {
         Welcome,&nbsp;&nbsp;{auth.user.username}!
       </div>
       <NavLink className="session" to="/session">
-        Session
+        <button className="btn btn-primary  text-white">Session</button>
       </NavLink>
     </>
   );

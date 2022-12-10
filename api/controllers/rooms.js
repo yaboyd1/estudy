@@ -88,7 +88,7 @@ router.delete('/:id', passport.isAuthenticated(), (req, res) => {
       return res.sendStatus(404);
     }
 
-    mpost.destroy();
+    room.destroy();
     res.sendStatus(204);
   });
 });

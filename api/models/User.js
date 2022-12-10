@@ -41,6 +41,9 @@ module.exports = (sequelize, DataTypes) => {
     User.belongsTo(models.Room, {
       foreignKey: 'roomId'
     });
+    User.hasMany(models.RoomChat, {
+      foreignKey: 'userId',
+    });
   };
 
   User.beforeSave((user, options) => {

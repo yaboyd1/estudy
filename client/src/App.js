@@ -104,6 +104,7 @@ function App() {
                   </PrivateRouteRequiresAuth>
                 }
               />
+              <Route path="/room/:id" element={<Room />} />
               <Route path="/signup" element={<SignupPage />} />
               <Route path="/posts/:id" element={<ShowPostPage />} />
               <Route path="/about-us" element={<AboutUsPage />} />

@@ -170,3 +170,41 @@ body {
 .btn-session:hover {
   background-color: #7f5af0;
 }
+
+/* Room */
+.chat-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.chat-box {
+  width: 80%;
+  border: 4px rgb(53, 151, 181) solid;
+  background-color: white;
+  position: relative;
+}
+
+.input-group {
+  position: absolute;
+  bottom: 0;
+}
+
+.messages > div {
+  border-bottom: #16161a solid 2px;
+}
+
+.room-send-btn {
+  border-radius: 0;
+  width: 100px;
+}
+
+.user-box {
+  width: 30%;
+  background-color: white;
+  margin-left: 30px;
+  overflow: hidden;
+}
+
+.logged-in {
+  color: green;
+}

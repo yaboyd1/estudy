@@ -39,7 +39,7 @@ function CreateRoom() {
     }
   };
 
-  if (success) return <Navigate to={'/' + data.roomName} />;
+  if (success) return <Navigate to={'/room/' + data.roomName} />;
 
   return (
     <div className="col-10 col-md-8 col-lg-7">

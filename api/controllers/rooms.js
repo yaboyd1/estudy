@@ -9,7 +9,7 @@ const { Room, User, RoomChat } = db;
 // a resource/model. It provides the following:
 //    GET    /api/room
 //    POST   /api/room
-//    GET    /api/room/:id
+//    PUT    /api/room/:id
 //    DELETE /api/room/
 //
 // The full URL's for these routes are composed by combining the
@@ -50,18 +50,55 @@ router.post('/', passport.isAuthenticated(), (req, res) => {
     });
 });
 
-router.get('/:id', (req, res) => {
+// @desc    Enter or leave the room
+// @route   PUT /api/rooms/:id
+// @access  Private
+router.put('/:id', passport.isAuthenticated(), async (req, res) => {
   const { id } = req.params;
-  Room.findByPk(id).then((room) => {
+  const { action } = req.body;
+  const room = await Room.findByPk(id);
+  
+  try{
+    if (!action || (action !== 'enter' && action !== 'leave')) {
+      return res.status(400).json({ Error: 'Enter the proper action \'enter\' or \'leave\'' });
+    }
     if (!room) {
       return res.sendStatus(404);
     }
 
+    if (action == 'enter') {
+      await User.update(
+        {
+          role: 'participant',
+          roomId: id,
+        },
+        {
+          where: {
+            id: req.user.id        
+          }
+        }
+      )
+    }
+    else if (action == 'leave') {
+      await User.update(
+        {
+          role: null,
+          roomId: null,
+        },
+        {
+          where: {
+            id: req.user.id        
+          }
+        }
+      )
+    }
     res.json(room);
-  });
+  } catch (err) {
+    return res.status(400).json(err);
+  }
 });
 
-// @desc    Delete all chats, update user's role and delete the room
+// @desc    Delete the room and the chats the user is in
 // @route   DELETE /api/rooms
 // @access  Private
 router.delete('/', passport.isAuthenticated(), async (req, res) => {

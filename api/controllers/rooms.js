@@ -69,6 +69,9 @@ router.delete('/', passport.isAuthenticated(), async (req, res) => {
     const user = await User.findByPk(req.user.id);
     const room = await Room.findByPk(user.roomId);
 
+    if (user.role !== 'admin') {
+      return res.status(400).json({ Error: 'The user is not admin' });
+    }
     if (!room) {
       return res.sendStatus(404);
     }

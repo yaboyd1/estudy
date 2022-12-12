@@ -47,7 +47,7 @@ function Room() {
         </div>
         {error && <ErrorAlert details={'Failed to save the content'} />}
         <form onSubmit={handleSubmit}>
-          <div className="input-group">
+          <div className="input-user-chat input-group">
             <input
               type="text"
               placeholder="Type here..."
@@ -65,19 +65,19 @@ function Room() {
       <div className="user-box">
         <h2 className="text-center">Users</h2>
         <div className="message bg-light p-4">
-          <span class="logged-in p-2">●</span>
+          <span className="logged-in p-2">●</span>
           hello
         </div>
         <div className="message bg-light p-4">
-          <span class="logged-in p-2">●</span>hi
+          <span className="logged-in p-2">●</span>hi
         </div>
         <div className="message bg-light p-4">
-          <span class="logged-in p-2">●</span>
+          <span className="logged-in p-2">●</span>
           hi
         </div>
         <div className="message bg-light p-4">
           <span
-            class="logged-in p-2
+            className="logged-in p-2
           "
           >
             ●

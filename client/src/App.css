@@ -184,9 +184,10 @@ body {
   position: relative;
 }
 
-.input-group {
+.input-user-chat {
   position: absolute;
   bottom: 0;
+  width: 100%;
 }
 
 .messages > div {

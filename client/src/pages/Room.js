@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Navigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ErrorAlert from '../components/ErrorAlert';
 import { io } from 'socket.io-client';
 
 function Room() {
-  const [content, setContent] = useState('');
-  const [success, setSuccess] = useState(false);
+  const [chat, setChat] = useState('');
   const [error, setError] = useState(false);
 
-  const handleNewChat = (data) => {
-    //fetch chat
+  const handleNewChat = (chat, callback) => {
+    console.log(chat);
   };
 
   useEffect(() => {
@@ -25,36 +24,29 @@ function Room() {
     };
   }, []);
 
-  const handleContentChange = (event) => {
-    setContent(event.target.value);
+  const handleChatChange = (event) => {
+    setChat(event.target.value);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      let response = await fetch('/api/micro_posts', {
+      let response = await fetch('/api/room_chats/', {
         method: 'POST',
         credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          content: content,
+          message: chat,
         }),
       });
 
-      if (response.ok) {
-        setSuccess(true);
-      } else {
-        setError(true);
-      }
     } catch (error) {
       console.error('Server error while creating a new post', error);
       setError(true);
     }
   };
-
-  if (success) return <Navigate to="/post/new" />;
 
   return (
     <div className="chat-container text-start">
@@ -69,9 +61,9 @@ function Room() {
             <input
               type="text"
               placeholder="Type here..."
-              value={content}
+              value={chat}
               className="form-control"
-              onChange={handleContentChange}
+              onChange={handleChatChange}
               autoFocus
             />
             <button type="submit" className="room-send-btn btn btn-primary">

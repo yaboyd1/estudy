@@ -46,9 +46,7 @@ router.post('/', passport.isAuthenticated(), (req, res) => {
         res.status(201).json(newRoomChat);
       })
       .then(()=>{
-          Socket.emit("chat", {
-          message: message
-        })
+          Socket.emit("chat", message);
       })
       .catch((err) => {
         res.status(400).json(err);

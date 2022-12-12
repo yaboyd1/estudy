@@ -6,6 +6,7 @@ const path = require('path');
 const db = require('./models');
 const app = express();
 const PORT = process.env.PORT;
+const { io } = require('./utils/socket.js');
 
 // this lets us parse 'application/json' content in http requests
 app.use(express.json());
@@ -44,7 +45,13 @@ db.sequelize.sync({ force: false });
 
 // start up the server
 if (PORT) {
-  app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+  const server = app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+  io.attach(server,{
+    cors: {
+      origin: "http://localhost:3000",
+      methods: ["GET", "POST"]
+  }});
+
 } else {
   console.log('===== ERROR ====\nCREATE A .env FILE!\n===== /ERROR ====');
 }

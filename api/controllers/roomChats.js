@@ -3,6 +3,7 @@ const passport = require('../middlewares/authentication');
 const router = express.Router();
 const db = require('../models');
 const { RoomChat, User } = db;
+const { Socket } = require("../utils/socket");
 
 // This is a simple example for providing basic CRUD routes for
 // a resource/model. It provides the following:
@@ -43,6 +44,11 @@ router.post('/', passport.isAuthenticated(), (req, res) => {
       })
       .then((newRoomChat) => {
         res.status(201).json(newRoomChat);
+      })
+      .then(()=>{
+          Socket.emit("chat", {
+          message: message
+        })
       })
       .catch((err) => {
         res.status(400).json(err);

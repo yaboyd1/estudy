@@ -16,7 +16,6 @@ function ExistingRooms() {
         let allRooms = await response.json();
         console.log(response);
         setRooms(allRooms);
-        console.log(allRooms);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching rooms', error);

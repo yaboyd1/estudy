@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
 import ErrorAlert from '../components/ErrorAlert';
-import { io } from "socket.io-client";
+import { io } from 'socket.io-client';
 
 function Room() {
   const [content, setContent] = useState('');
@@ -10,18 +10,20 @@ function Room() {
 
   const handleNewChat = (data) => {
     //fetch chat
-  }
+  };
 
   useEffect(() => {
     //subscrib when this component is mounted
-    const socket = io.connect("http://localhost:8080");
+    const socket = io.connect('http://localhost:8080');
 
     //upon new chat fetch new chat's
     socket.on('chat', handleNewChat);
 
     //unsubscrib when the user leave the room
-    return ()=>{socket.close()};
-  },[]);
+    return () => {
+      socket.close();
+    };
+  }, []);
 
   const handleContentChange = (event) => {
     setContent(event.target.value);
@@ -82,14 +84,14 @@ function Room() {
         <h2 className="text-center">Users</h2>
         <div className="message bg-light p-4">
           <span className="logged-in p-2">●</span>
-          hello
+          kevin
         </div>
         <div className="message bg-light p-4">
-          <span className="logged-in p-2">●</span>hi
+          <span className="logged-in p-2">●</span>Khan
         </div>
         <div className="message bg-light p-4">
           <span className="logged-in p-2">●</span>
-          hi
+          Shin
         </div>
         <div className="message bg-light p-4">
           <span
@@ -98,8 +100,15 @@ function Room() {
           >
             ●
           </span>
-          hi
+          Dewan
         </div>
+
+        <Link
+          to="/session"
+          className="exit-btn bg-danger text-white text-center "
+        >
+          <h5>Exit Room</h5>
+        </Link>
       </div>
     </div>
   );

@@ -1,11 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import ErrorAlert from '../components/ErrorAlert';
+import { io } from "socket.io-client";
 
 function Room() {
   const [content, setContent] = useState('');
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
+
+  const handleNewChat = (data) => {
+    //fetch chat
+  }
+
+  useEffect(() => {
+    //subscrib when this component is mounted
+    const socket = io.connect("http://localhost:8080");
+
+    //upon new chat fetch new chat's
+    socket.on('chat', handleNewChat);
+
+    //unsubscrib when the user leave the room
+    return ()=>{socket.close()};
+  },[]);
 
   const handleContentChange = (event) => {
     setContent(event.target.value);

@@ -35,7 +35,7 @@ function ExistingRooms() {
   if (rooms.length === 0) {
     noRoom = 'No one made a room yet!';
   }
-  if (error) return <ErrorAlert details="Failed to fetch all micro rooms" />;
+  if (error) return <ErrorAlert details="Failed to fetch rooms  " />;
   if (loading) return <LoadingSpinner />;
 
   return (

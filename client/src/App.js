@@ -15,6 +15,7 @@ import CreateRoom from './pages/CreateRoom';
 import Room from './pages/Room';
 import './App.css';
 import PrivateRouteRequiresAuth from './components/PrivateRouteRequiresAuth';
+import ExistingRooms from './pages/ExistingRooms';
 
 function Navigation() {
   return (
@@ -101,6 +102,14 @@ function App() {
                 element={
                   <PrivateRouteRequiresAuth>
                     <Room />
+                  </PrivateRouteRequiresAuth>
+                }
+              />
+              <Route
+                path="/existing-rooms"
+                element={
+                  <PrivateRouteRequiresAuth>
+                    <ExistingRooms />
                   </PrivateRouteRequiresAuth>
                 }
               />

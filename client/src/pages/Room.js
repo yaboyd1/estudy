@@ -134,14 +134,14 @@ function Room() {
       <div className="chat-container text-start">
         <div className="chat-box">
           <div className="messages">
-            {chats.map((chat) => {
+            {chats.map((chat) => 
               <>
-              <div>{chat.createdAt}</div>
-              <div>{chat.createdAt}</div>
-              <div className="message bg-light p-4">{chat.message}</div>
-              <div className="message bg-light p-4">hi</div>
+                <div className="message bg-light p-4">
+                  {`${chat.User.username}: ${chat.message}`}
+                  <div>{chat.createdAt}</div>
+                </div>
               </>
-            })}
+            )}
           </div>
           {error && <ErrorAlert details={'Failed to save the content'} />}
           <form onSubmit={handleSubmit}>

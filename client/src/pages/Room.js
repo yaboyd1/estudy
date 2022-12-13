@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Navigate, Link } from 'react-router-dom';
+import { useLocation , Link } from 'react-router-dom';
 import ErrorAlert from '../components/ErrorAlert';
 import { io } from 'socket.io-client';
 import ResultCard from '../components/ResultCard';
@@ -16,6 +16,8 @@ function Room() {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [questionData, setQuestionData] = useState(triviaQuestion);
   const [count, setCount] = useState(0);
+  const { query, search } = useLocation(); 
+  const roomId = search.slice(8);
 
   const selectAnswer = (selection) => {
     setSelectedAnswer(selection);

@@ -21,7 +21,7 @@ const { Room, User, RoomChat } = db;
 // @route   GET /api/rooms
 // @access  Private
 router.get('/', passport.isAuthenticated(), (req, res) => {
-  Room.findAll({}).then((allPosts) => res.json(allPosts));
+  Room.findAll({}).then((allRooms) => res.json(allRooms));
 });
 
 // @desc    Create a room and assign the room id to the user

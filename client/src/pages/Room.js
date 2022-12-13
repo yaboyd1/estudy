@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Navigate, Link } from 'react-router-dom';
+import { useLocation , Link } from 'react-router-dom';
 import ErrorAlert from '../components/ErrorAlert';
 import { io } from 'socket.io-client';
 import ResultCard from '../components/ResultCard';
@@ -10,12 +10,15 @@ import rawTriviaQuestion from '../lib/data';
 const triviaQuestion = rawTriviaQuestion.results[0];
 
 function Room() {
+  const [chats, setChats] = useState([]);
   const [chat, setChat] = useState('');
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [questionData, setQuestionData] = useState(triviaQuestion);
   const [count, setCount] = useState(0);
+  const { search } = useLocation(); 
+  const roomId = search.slice(8);
 
   const selectAnswer = (selection) => {
     setSelectedAnswer(selection);
@@ -53,21 +56,42 @@ function Room() {
       });
   };
 
+  const fetchPrevChats = () => {
+    fetch(`/api/room_chats/${roomId}`, {
+      method: 'get',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((res) => res.json())
+      .then((body) => {
+        setChats(JSON.parse(body));
+      });
+  }
 
-  useEffect(() => {
-    //subscrib when this component is mounted
+  useEffect(() => { 
+    //fetch all chats
+    fetchPrevChats();
+
+    //subscrib when the user enters the room
     const socket = io.connect('http://localhost:8080');
 
-    //upon new chat fetch new chat's
-    socket.on('chat', handleNewChat);
+    //upon new chat recieve the new chat's
+    socket.on(`chat${roomId}`, handleNewChat);
 
-    //unsubscrib when the user leave the room
+    //unsubscrib when the user leaves the room
     return () => {
       socket.close();
     };
   }, []);
+
+  useEffect(() => {
+    console.log(chats);
+  },[chats])
+
   const handleNewChat = (chat, callback) => {
-    console.log(chat);
+    setChats(prevChats => [...prevChats, chat]);
   }
   const handleChatChange = (event) => {
     setChat(event.target.value);
@@ -110,8 +134,14 @@ function Room() {
       <div className="chat-container text-start">
         <div className="chat-box">
           <div className="messages">
-            <div className="message bg-light p-4">hello</div>
-            <div className="message bg-light p-4">hi</div>
+            {chats.map((chat) => 
+              <>
+                <div className="message bg-light p-4">
+                  {`${chat.User.username}: ${chat.message}`}
+                  <div>{chat.createdAt}</div>
+                </div>
+              </>
+            )}
           </div>
           {error && <ErrorAlert details={'Failed to save the content'} />}
           <form onSubmit={handleSubmit}>

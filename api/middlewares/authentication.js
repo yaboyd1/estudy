@@ -15,6 +15,7 @@ function passwordsMatch(submittedPassword, storedPasswordHash) {
   but you may prefer to use a `username` parameter instead of an username.
   BEST PRACTICE: don't state why login failed to the user.
 */
+
 passport.use(
   new LocalStrategy(
     {

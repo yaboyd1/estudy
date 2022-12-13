@@ -32,30 +32,22 @@ router.get('/', (req, res) => {
 // @desc    Post a chat, given roomId and userId
 // @route   POST /api/room_chats
 // @access  Private
-router.post('/', passport.isAuthenticated(), (req, res) => {
+router.post('/', passport.isAuthenticated(), async (req, res) => {
   const { message } = req.body;
-  User.findByPk(req.user.id)
-    .then((user) => {
-      const roomId = user.roomId;
-      RoomChat.create({ 
-        message: message,
-        userId: req.user.id,
-        roomId: roomId
-      })
-      .then((newRoomChat) => {
-        res.status(201).json(newRoomChat);
-        Socket.emit("chat", newRoomChat);
-      })
-      .then(()=>{
-          
-      })
-      .catch((err) => {
-        res.status(400).json(err);
-      });
-    })     
-    .catch((err) => {
-      res.status(400).json(err);
-    });
+  const user = await User.findByPk(req.user.id);
+  const roomId = user.roomId;
+  const newRoomChat = await RoomChat.create({
+    message: message,
+    userId: req.user.id,
+    roomId: roomId
+  });
+
+  res.status(201).json(newRoomChat);
+
+  Socket.emit(`chat${roomId}`, {
+    username: user.username,
+    ...newRoomChat.dataValues
+  });
 
 });
 

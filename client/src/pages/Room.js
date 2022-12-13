@@ -10,7 +10,7 @@ import rawTriviaQuestion from '../lib/data';
 const triviaQuestion = rawTriviaQuestion.results[0];
 
 function Room() {
-  const [content, setContent] = useState('');
+  const [chat, setChat] = useState('');
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
@@ -53,9 +53,6 @@ function Room() {
       });
   };
 
-  const handleNewChat = (data) => {
-    //fetch chat
-  };
 
   useEffect(() => {
     //subscrib when this component is mounted
@@ -69,37 +66,32 @@ function Room() {
       socket.close();
     };
   }, []);
-
-  const handleContentChange = (event) => {
-    setContent(event.target.value);
+  const handleNewChat = (chat, callback) => {
+    console.log(chat);
+  }
+  const handleChatChange = (event) => {
+    setChat(event.target.value);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      let response = await fetch('/api/micro_posts', {
+      let response = await fetch('/api/room_chats/', {
         method: 'POST',
         credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          content: content,
+          message: chat,
         }),
       });
 
-      if (response.ok) {
-        setSuccess(true);
-      } else {
-        setError(true);
-      }
     } catch (error) {
       console.error('Server error while creating a new post', error);
       setError(true);
     }
   };
-
-  if (success) return <Navigate to="/post/new" />;
 
   return (
     <>
@@ -127,9 +119,9 @@ function Room() {
               <input
                 type="text"
                 placeholder="Type here..."
-                value={content}
+                value={chat}
                 className="form-control"
-                onChange={handleContentChange}
+                onChange={handleChatChange}
                 autoFocus
               />
               <button type="submit" className="room-send-btn btn btn-primary">

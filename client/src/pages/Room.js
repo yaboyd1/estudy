@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation , Link } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import ErrorAlert from '../components/ErrorAlert';
 import { io } from 'socket.io-client';
 import ResultCard from '../components/ResultCard';
@@ -17,7 +17,7 @@ function Room() {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [questionData, setQuestionData] = useState(triviaQuestion);
   const [count, setCount] = useState(0);
-  const { search } = useLocation(); 
+  const { search } = useLocation();
   const roomId = search.slice(8);
 
   const selectAnswer = (selection) => {
@@ -68,9 +68,9 @@ function Room() {
       .then((body) => {
         setChats(JSON.parse(body));
       });
-  }
+  };
 
-  useEffect(() => { 
+  useEffect(() => {
     //fetch all chats
     fetchPrevChats();
 
@@ -88,11 +88,12 @@ function Room() {
 
   useEffect(() => {
     console.log(chats);
-  },[chats])
+  }, [chats]);
 
   const handleNewChat = (chat, callback) => {
-    setChats(prevChats => [...prevChats, chat]);
-  }
+    setChats((prevChats) => [...prevChats, chat]);
+  };
+
   const handleChatChange = (event) => {
     setChat(event.target.value);
   };
@@ -110,7 +111,6 @@ function Room() {
           message: chat,
         }),
       });
-
     } catch (error) {
       console.error('Server error while creating a new post', error);
       setError(true);
@@ -134,19 +134,20 @@ function Room() {
       <div className="chat-container text-start">
         <div className="chat-box">
           <div className="messages">
-            {chats.map((chat) => 
+            {chats.map((chat) => (
               <>
                 <div className="message bg-light p-4">
                   {`${chat.User.username}: ${chat.message}`}
                   <div>{chat.createdAt}</div>
                 </div>
               </>
-            )}
+            ))}
           </div>
           {error && <ErrorAlert details={'Failed to save the content'} />}
-          <form onSubmit={handleSubmit}>
+          <form id="form-chat" onSubmit={handleSubmit}>
             <div className="input-user-chat input-group">
               <input
+                id="input-chat-bar"
                 type="text"
                 placeholder="Type here..."
                 value={chat}

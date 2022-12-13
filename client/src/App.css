@@ -197,6 +197,7 @@ body {
 .chat-container {
   display: flex;
   justify-content: space-between;
+  height: 500px;
 }
 
 .chat-box {
@@ -204,10 +205,12 @@ body {
   border: 4px rgb(53, 151, 181) solid;
   background-color: white;
   position: relative;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .input-user-chat {
-  position: absolute;
+  position: sticky;
   bottom: 0;
   width: 100%;
 }
@@ -229,6 +232,7 @@ body {
   border: 4px rgb(53, 151, 181) solid;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .logged-in {
@@ -238,6 +242,9 @@ body {
 .exit-btn {
   border-top: none;
   text-decoration: none;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 .exit-btn:hover {

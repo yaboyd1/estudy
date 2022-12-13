@@ -8,8 +8,8 @@ function AfterLoginPage() {
     navigate(path);
   };
 
-  const redirectExistingRooms = () => {
-    let path = '/existing-rooms';
+  const redirectListOfRooms = () => {
+    let path = '/rooms';
     navigate(path);
   };
 
@@ -17,12 +17,12 @@ function AfterLoginPage() {
     <div className="session-options">
       <div className="session-options">
         <button onClick={redirectCreateRoom} className="btn-session rounded ">
-          Create new room
+          New Room
         </button>
       </div>
       <div className="session-options">
-        <button onClick={redirectExistingRooms} className="btn-session rounded">
-          Enter an existing room
+        <button onClick={redirectListOfRooms} className="btn-session rounded">
+          Join Room
         </button>
       </div>
       <div className="session-options">

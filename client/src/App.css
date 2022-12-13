@@ -178,6 +178,22 @@ body {
 }
 
 /* Room */
+.quiz {
+  border: 4px rgb(53, 151, 181) solid;
+  width: 30%;
+  position: relative;
+}
+
+.count {
+  align-self: flex-start;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 30px;
+  border: 4px solid #7f5af0b4;
+  padding: 5px;
+}
+
 .chat-container {
   display: flex;
   justify-content: space-between;
@@ -221,7 +237,6 @@ body {
 
 .exit-btn {
   border-top: none;
-  margin: auto 0;
   text-decoration: none;
 }
 

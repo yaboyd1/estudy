@@ -46,12 +46,12 @@ db.sequelize.sync({ force: false });
 // start up the server
 if (PORT) {
   const server = app.listen(PORT, () => console.log(`Listening on ${PORT}`));
-  io.attach(server,{
+  io.attach(server, {
     cors: {
-      origin: "http://localhost:3000",
-      methods: ["GET", "POST"]
-  }});
-
+      origin: 'http://localhost:3000',
+      methods: ['GET', 'POST'],
+    },
+  });
 } else {
   console.log('===== ERROR ====\nCREATE A .env FILE!\n===== /ERROR ====');
 }

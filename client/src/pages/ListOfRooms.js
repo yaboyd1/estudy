@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import ListOfRooms from '../components/ListOfRooms';
+import RoomSlot from '../components/RoomSlot';
 import LoadingSpinner from '../components/LoadingSpinner';
 import ErrorAlert from '../components/ErrorAlert';
 
-function ExistingRooms() {
+function ListOfRooms() {
   const [rooms, setRooms] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -42,11 +42,11 @@ function ExistingRooms() {
       <div className="text-white">{noRoom}</div>
       <div className="row justify-content-center">
         {rooms.map((entryData) => (
-          <ListOfRooms {...entryData} key={entryData.id} />
+          <RoomSlot {...entryData} key={entryData.id} />
         ))}
       </div>
     </div>
   );
 }
 
-export default ExistingRooms;
+export default ListOfRooms;

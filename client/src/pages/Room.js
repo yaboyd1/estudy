@@ -16,7 +16,7 @@ function Room() {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [questionData, setQuestionData] = useState(triviaQuestion);
   const [count, setCount] = useState(0);
-  const { query, search } = useLocation(); 
+  const { search } = useLocation(); 
   const roomId = search.slice(8);
 
   const selectAnswer = (selection) => {
@@ -61,7 +61,7 @@ function Room() {
     const socket = io.connect('http://localhost:8080');
 
     //upon new chat fetch new chat's
-    socket.on('chat', handleNewChat);
+    socket.on(`chat${roomId}`, handleNewChat);
 
     //unsubscrib when the user leave the room
     return () => {

@@ -43,7 +43,6 @@ router.post('/', passport.isAuthenticated(), async (req, res) => {
   });
 
   res.status(201).json(newRoomChat);
-
   Socket.emit(`chat${roomId}`, {
     username: user.username,
     ...newRoomChat.dataValues

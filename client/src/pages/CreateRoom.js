@@ -6,7 +6,7 @@ function CreateRoom() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [data, setData] = useState({ roomName: '', url: '' });
-
+  const [roomId, setroomId] = useState();
   const fieldChanged = (name) => {
     return (event) => {
       let { value } = event.target;
@@ -27,8 +27,10 @@ function CreateRoom() {
           name: data.roomName,
         }),
       });
-
+      const body = await response.json();
+      console.log(body);
       if (response.ok) {
+        setroomId(body.id);
         setSuccess(true);
       } else {
         setError(true);
@@ -38,8 +40,7 @@ function CreateRoom() {
       setError(true);
     }
   };
-
-  if (success) return <Navigate to={'/room/' + data.roomName} />;
+  if (success) return <Navigate to={`/room/${data.roomName}?roomid=${roomId}`} />;
 
   return (
     <div className="col-10 col-md-8 col-lg-7">

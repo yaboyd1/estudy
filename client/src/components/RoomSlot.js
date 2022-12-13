@@ -14,7 +14,6 @@ function RoomSlot({ name, createdAt, id }) {
           action: 'enter',
         }),
       });
-      console.log(response);
     } catch (error) {
     }
   }

@@ -117,8 +117,8 @@ function Room() {
     <div className="room-container">
       <div className="quiz w-100 my-5 d-flex justify-content-center align-items-center bg-light">
         <div className="quiz-board" style={{ maxWidth: '45%' }}>
-          <h1 className="text-center mb-4">Trivia Quiz</h1>
-          <button onClick={getQuestion} className="btn btn-success mt-4 mb-4">
+          <h2 className="text-center my-4">Trivia Quiz</h2>
+          <button onClick={getQuestion} className="btn btn-success mb-4">
             Next Question
           </button>
           {card}

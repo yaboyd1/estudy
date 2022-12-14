@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import ErrorAlert from '../components/ErrorAlert';
 import { io } from 'socket.io-client';
@@ -18,6 +18,7 @@ function Room() {
   const [count, setCount] = useState(0);
   const { search } = useLocation();
   const roomId = search.slice(8);
+  const messagesEndRef = useRef(null);
 
   const selectAnswer = (selection) => {
     setSelectedAnswer(selection);
@@ -55,6 +56,11 @@ function Room() {
       });
   };
 
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView();
+  };
+
   const fetchPrevChats = () => {
     fetch(`/api/room_chats/${roomId}`, {
       method: 'get',
@@ -86,6 +92,7 @@ function Room() {
   }, []);
 
   const handleNewChat = (chat, callback) => {
+    scrollToBottom();
     setChats((prevChats) => [...prevChats, chat]);
   };
 
@@ -135,18 +142,22 @@ function Room() {
             <div className="messages">
               {chats.map((chat) => (
                 <>
-                  <div className="message bg-light p-4">
+                  <div className="message bg-light p-1">
                     {`${chat.User.username}: ${chat.message}`}
                     <div>{chat.createdAt}</div>
                   </div>
                 </>
               ))}
+              <div ref={messagesEndRef} />
+
             </div>
+            
             {error && <ErrorAlert details={'Failed to save the content'} />}
             <form id="form-chat" onSubmit={handleSubmit}>
               <div className="input-user-chat input-group">
                 <input
                   id="input-chat-bar"
+                  name="chat-message"
                   type="text"
                   placeholder="Type here..."
                   value={chat}
@@ -160,20 +171,21 @@ function Room() {
               </div>
             </form>
           </div>
+          {/*Dummy data to be replaced*/}
           <div className="user-box">
             <h2 className="text-center">Users</h2>
-            <div className="message bg-light p-4">
+            <div className="message bg-light">
               <span className="logged-in p-2">●</span>
               kevin
             </div>
-            <div className="message bg-light p-4">
+            <div className="message bg-light">
               <span className="logged-in p-2">●</span>Khan
             </div>
-            <div className="message bg-light p-4">
+            <div className="message bg-light">
               <span className="logged-in p-2">●</span>
               Shin
             </div>
-            <div className="message bg-light p-4">
+            <div className="message bg-light">
               <span
                 className="logged-in p-2
             "

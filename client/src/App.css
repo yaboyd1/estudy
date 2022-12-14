@@ -205,18 +205,27 @@ body {
 }
 
 .chat-box {
+  display: flex;
+  flex-direction: column;
   width: 80%;
   border: 4px rgb(53, 151, 181) solid;
   background-color: white;
   position: relative;
-  overflow-y: scroll;
   overflow-x: hidden;
+}
+
+.chat-box .messages {
+  overflow-y: scroll;
 }
 
 .input-user-chat {
   position: sticky;
   bottom: 0;
   width: 100%;
+}
+
+#input-chat-bar{
+  box-shadow: 0 0 0 0;
 }
 
 .messages > div {

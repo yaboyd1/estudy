@@ -85,10 +85,6 @@ function Room() {
     };
   }, []);
 
-  useEffect(() => {
-    console.log(chats);
-  }, [chats]);
-
   const handleNewChat = (chat, callback) => {
     setChats((prevChats) => [...prevChats, chat]);
   };

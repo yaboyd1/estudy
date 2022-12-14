@@ -91,8 +91,11 @@ function Room() {
     };
   }, []);
 
-  const handleNewChat = (chat, callback) => {
+  useEffect(() => {
     scrollToBottom();
+  },[chats])
+
+  const handleNewChat = (chat, callback) => {
     setChats((prevChats) => [...prevChats, chat]);
   };
 
@@ -149,10 +152,10 @@ function Room() {
                 </>
               ))}
               <div ref={messagesEndRef} />
-
             </div>
-            
+
             {error && <ErrorAlert details={'Failed to save the content'} />}
+
             <form id="form-chat" onSubmit={handleSubmit}>
               <div className="input-user-chat input-group">
                 <input
@@ -171,6 +174,7 @@ function Room() {
               </div>
             </form>
           </div>
+
           {/*Dummy data to be replaced*/}
           <div className="user-box">
             <h2 className="text-center">Users</h2>

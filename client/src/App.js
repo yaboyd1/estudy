@@ -69,7 +69,7 @@ function App() {
       <BrowserRouter>
         <Navigation />
         <div className="container-xl text-center p-0">
-          <div className="row justify-content-center">
+          <div className="justify-content-center">
             <Routes>
               <Route path="/login" element={<LoginPage />} />
               <Route

@@ -114,7 +114,7 @@ function Room() {
   };
 
   return (
-    <div className="room-container">
+    <div className="room-container p-0">
       <div class="quiz-container p-0 h-75">
         <div className="quiz w-100 h-100 d-flex justify-content-center align-items-center bg-light">
           <div className="quiz-board" style={{ maxWidth: '45%' }}>

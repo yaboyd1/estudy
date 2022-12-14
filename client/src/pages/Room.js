@@ -79,11 +79,11 @@ function Room() {
     //fetch all chats
     fetchPrevChats();
 
-    //subscrib when the user enters the room
+    //subscribe when the user enters the room
     const socket = io.connect('http://localhost:8080');
     socket.on(`chat${roomId}`, handleNewChat);
 
-    //unsubscrib when the user leaves the room
+    //unsubscribe when the user leaves the room
     return () => {
       socket.close();
     };

@@ -115,76 +115,80 @@ function Room() {
 
   return (
     <div className="room-container">
-      <div className="quiz w-100 my-5 d-flex justify-content-center align-items-center bg-light">
-        <div className="quiz-board" style={{ maxWidth: '45%' }}>
-          <h2 className="text-center my-4">Trivia Quiz</h2>
-          <button onClick={getQuestion} className="btn btn-success mb-4">
-            Next Question
-          </button>
-          {card}
-          <br />
-          <br />
+      <div class="quiz-container p-0 h-75">
+        <div className="quiz w-100 h-100 d-flex justify-content-center align-items-center bg-light">
+          <div className="quiz-board" style={{ maxWidth: '45%' }}>
+            <h2 className="text-center my-4">Trivia Quiz</h2>
+            <button onClick={getQuestion} className="btn btn-success mb-4">
+              Next Question
+            </button>
+            {card}
+            <br />
+            <br />
+          </div>
+          <div className="count text-end">Score: {count}</div>
         </div>
-        <div className="count text-end">Score: {count}</div>
       </div>
-      <div className="chat-container text-start">
-        <div className="chat-box">
-          <div className="messages">
-            {chats.map((chat) => (
-              <>
-                <div className="message bg-light p-4">
-                  {`${chat.User.username}: ${chat.message}`}
-                  <div>{chat.createdAt}</div>
-                </div>
-              </>
-            ))}
-          </div>
-          {error && <ErrorAlert details={'Failed to save the content'} />}
-          <form id="form-chat" onSubmit={handleSubmit}>
-            <div className="input-user-chat input-group">
-              <input
-                id="input-chat-bar"
-                type="text"
-                placeholder="Type here..."
-                value={chat}
-                className="form-control"
-                onChange={handleChatChange}
-                autoFocus
-              />
-              <button type="submit" className="room-send-btn btn btn-primary">
-                Send
-              </button>
+      <div class="chat-container h-25">
+        <div className="chat-container text-start w-100">
+          <div className="chat-box">
+            <div className="messages">
+              {chats.map((chat) => (
+                <>
+                  <div className="message bg-light p-4">
+                    {`${chat.User.username}: ${chat.message}`}
+                    <div>{chat.createdAt}</div>
+                  </div>
+                </>
+              ))}
             </div>
-          </form>
-        </div>
-        <div className="user-box">
-          <h2 className="text-center">Users</h2>
-          <div className="message bg-light p-4">
-            <span className="logged-in p-2">●</span>
-            kevin
+            {error && <ErrorAlert details={'Failed to save the content'} />}
+            <form id="form-chat" onSubmit={handleSubmit}>
+              <div className="input-user-chat input-group">
+                <input
+                  id="input-chat-bar"
+                  type="text"
+                  placeholder="Type here..."
+                  value={chat}
+                  className="form-control"
+                  onChange={handleChatChange}
+                  autoFocus
+                />
+                <button type="submit" className="room-send-btn btn btn-primary">
+                  Send
+                </button>
+              </div>
+            </form>
           </div>
-          <div className="message bg-light p-4">
-            <span className="logged-in p-2">●</span>Khan
-          </div>
-          <div className="message bg-light p-4">
-            <span className="logged-in p-2">●</span>
-            Shin
-          </div>
-          <div className="message bg-light p-4">
-            <span
-              className="logged-in p-2
-          "
+          <div className="user-box">
+            <h2 className="text-center">Users</h2>
+            <div className="message bg-light p-4">
+              <span className="logged-in p-2">●</span>
+              kevin
+            </div>
+            <div className="message bg-light p-4">
+              <span className="logged-in p-2">●</span>Khan
+            </div>
+            <div className="message bg-light p-4">
+              <span className="logged-in p-2">●</span>
+              Shin
+            </div>
+            <div className="message bg-light p-4">
+              <span
+                className="logged-in p-2
+            "
+              >
+                ●
+              </span>
+              Dewan
+            </div>
+            <Link
+              to="/session"
+              className="exit-btn bg-danger text-white text-center mb-0 "
             >
-              ●
-            </span>
-            Dewan
+              <h5>Exit Room</h5>
+            </Link>
           </div>
-          <Link
-            to="/session"
-            className="exit-btn bg-danger text-white text-center mb-0 "
-          >
-            <h5>Exit Room</h5>
-          </Link>
         </div>
       </div>
     </div>

@@ -68,7 +68,7 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <Navigation />
-        <div className="container-xl text-center">
+        <div className="container-xl text-center p-0">
           <div className="row justify-content-center">
             <Routes>
               <Route path="/login" element={<LoginPage />} />

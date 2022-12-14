@@ -202,7 +202,6 @@ body {
 .chat-container {
   display: flex;
   justify-content: space-between;
-  height: 500px;
 }
 
 .chat-box {
@@ -232,7 +231,6 @@ body {
 .user-box {
   width: 30%;
   background-color: white;
-  margin-left: 30px;
   overflow: hidden;
   border: 4px rgb(53, 151, 181) solid;
   display: flex;

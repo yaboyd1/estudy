@@ -151,7 +151,7 @@ function Room() {
                   </div>
                 </>
               ))}
-              <div ref={messagesEndRef} />
+              <div className="chat-box-end-ref" ref={messagesEndRef} />
             </div>
 
             {error && <ErrorAlert details={'Failed to save the content'} />}
@@ -159,6 +159,7 @@ function Room() {
             <form id="form-chat" onSubmit={handleSubmit}>
               <div className="input-user-chat input-group">
                 <input
+                  autoComplete="off"
                   id="input-chat-bar"
                   name="chat-message"
                   type="text"

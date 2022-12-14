@@ -212,10 +212,15 @@ body {
   background-color: white;
   position: relative;
   overflow-x: hidden;
+  justify-content: flex-end;
 }
 
 .chat-box .messages {
   overflow-y: scroll;
+}
+
+.chat-box .chat-box-end-ref {
+  border-width: 0;
 }
 
 .input-user-chat {

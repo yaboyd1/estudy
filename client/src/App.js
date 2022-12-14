@@ -19,7 +19,7 @@ import ListOfRooms from './pages/ListOfRooms';
 
 function Navigation() {
   return (
-    <nav className=" navbar navbar-expand-sm navbar-dark mb-3">
+    <nav className=" navbar navbar-expand-sm navbar-dark">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
           <img
@@ -68,8 +68,8 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <Navigation />
-        <div className="container-xl text-center">
-          <div className="row justify-content-center">
+        <div className="container-xl text-center p-0">
+          <div className="justify-content-center">
             <Routes>
               <Route path="/login" element={<LoginPage />} />
               <Route

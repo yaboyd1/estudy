@@ -14,7 +14,7 @@ function AfterLoginPage() {
   };
 
   return (
-    <div className="session-options">
+    <div className="session-options mt-3">
       <div className="session-options">
         <button onClick={redirectCreateRoom} className="btn-session rounded ">
           New Room

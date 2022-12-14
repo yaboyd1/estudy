@@ -8,29 +8,12 @@ const { Socket } = require("../utils/socket");
 
 // This is a simple example for providing basic CRUD routes for
 // a resource/model. It provides the following:
-//    GET     /api/room_chats/
 //    POST    /api/room_chats/
 //    GET     /api/room_chats/:roomId
 // The full URL's for these routes are composed by combining the
 // prefixes used to load the controller files.
 //    /api comes from the file ../app.js
 //    /room_chats comes from the file ./roomChats.js
-
-/*
-router.get('/', (req, res) => {
-  User.findByPk(req.user.id)
-    .then((user) => {
-      const roomId = user.roomId;
-      RoomChat.findAll({ where: { roomId }})
-        .then((allChats) => { 
-          res.json(allChats); 
-        })
-        .catch((err) => {
-          res.status(400).json(err);
-        });
-    })
-});
-*/
 
 // @desc    Post a chat, given roomId and userId
 // @route   POST /api/room_chats

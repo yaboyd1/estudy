@@ -12,7 +12,6 @@ const triviaQuestion = rawTriviaQuestion.results[0];
 function Room() {
   const [chats, setChats] = useState([]);
   const [chat, setChat] = useState('');
-  const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [questionData, setQuestionData] = useState(triviaQuestion);
@@ -61,7 +60,7 @@ function Room() {
       method: 'get',
       credentials: 'include',
       headers: {
-        'Content-Type': 'application/json',     //localhost:8080/api/room_chats/1
+        'Content-Type': 'application/json', 
       },
     })
       .then((res) => res.json())

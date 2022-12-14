@@ -49,31 +49,33 @@ function SignupPage() {
   }
 
   return (
-    <div className="col-10 col-md-8 col-lg-7">
-      <form onSubmit={signup}>
-        <div className="form-row">
-          {errorMessage}
-          <input
-            type="username"
-            className="form-control p-2 m-2"
-            name="username"
-            placeholder="Username"
-            value={data.username}
-            onChange={fieldChanged('username')}
-          />
-          <input
-            type="password"
-            className="form-control p-2 m-2"
-            name="password"
-            placeholder="Password"
-            value={data.password}
-            onChange={fieldChanged('password')}
-          />
-          <button type="submit" className="btn text-white p-3 mt-4">
-            Sign up
-          </button>
-        </div>
-      </form>
+    <div class="row justify-content-center mt-3">
+      <div className="col-10 col-md-8 col-lg-7">
+        <form onSubmit={signup}>
+          <div className="form-row">
+            {errorMessage}
+            <input
+              type="username"
+              className="form-control p-2 m-2"
+              name="username"
+              placeholder="Username"
+              value={data.username}
+              onChange={fieldChanged('username')}
+            />
+            <input
+              type="password"
+              className="form-control p-2 m-2"
+              name="password"
+              placeholder="Password"
+              value={data.password}
+              onChange={fieldChanged('password')}
+            />
+            <button type="submit" className="btn text-white p-3 mt-4">
+              Sign up
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

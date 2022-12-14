@@ -38,7 +38,7 @@ function ListOfRooms() {
   if (loading) return <LoadingSpinner />;
 
   return (
-    <div className="container-fluid text-center">
+    <div className="container-fluid text-center mt-4">
       <div className="text-white">{noRoom}</div>
       <div className="row justify-content-center">
         {rooms.map((entryData) => (

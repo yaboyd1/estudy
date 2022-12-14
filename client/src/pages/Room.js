@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import ErrorAlert from '../components/ErrorAlert';
 import { io } from 'socket.io-client';
@@ -12,13 +12,13 @@ const triviaQuestion = rawTriviaQuestion.results[0];
 function Room() {
   const [chats, setChats] = useState([]);
   const [chat, setChat] = useState('');
-  const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [questionData, setQuestionData] = useState(triviaQuestion);
   const [count, setCount] = useState(0);
   const { search } = useLocation();
   const roomId = search.slice(8);
+  const messagesEndRef = useRef(null);
 
   const selectAnswer = (selection) => {
     setSelectedAnswer(selection);
@@ -56,12 +56,17 @@ function Room() {
       });
   };
 
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView();
+  };
+
   const fetchPrevChats = () => {
     fetch(`/api/room_chats/${roomId}`, {
       method: 'get',
       credentials: 'include',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json', 
       },
     })
       .then((res) => res.json())
@@ -74,21 +79,19 @@ function Room() {
     //fetch all chats
     fetchPrevChats();
 
-    //subscrib when the user enters the room
+    //subscribe when the user enters the room
     const socket = io.connect('http://localhost:8080');
-
-    //upon new chat recieve the new chat's
     socket.on(`chat${roomId}`, handleNewChat);
 
-    //unsubscrib when the user leaves the room
+    //unsubscribe when the user leaves the room
     return () => {
       socket.close();
     };
   }, []);
 
   useEffect(() => {
-    console.log(chats);
-  }, [chats]);
+    scrollToBottom();
+  },[chats])
 
   const handleNewChat = (chat, callback) => {
     setChats((prevChats) => [...prevChats, chat]);
@@ -100,6 +103,7 @@ function Room() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setChat('');
     try {
       let response = await fetch('/api/room_chats/', {
         method: 'POST',
@@ -118,80 +122,91 @@ function Room() {
   };
 
   return (
-    <>
-      <div className="quiz w-100 my-5 d-flex justify-content-center align-items-center bg-light">
-        <div className="quiz-board" style={{ maxWidth: '45%' }}>
-          <h1 className="text-center mb-4">Trivia Quiz</h1>
-          <button onClick={getQuestion} className="btn btn-success mt-4 mb-4">
-            Next Question
-          </button>
-          {card}
-          <br />
-          <br />
-        </div>
-        <div className="count text-end">Score: {count}</div>
-      </div>
-      <div className="chat-container text-start">
-        <div className="chat-box">
-          <div className="messages">
-            {chats.map((chat) => (
-              <>
-                <div className="message bg-light p-4">
-                  {`${chat.User.username}: ${chat.message}`}
-                  <div>{chat.createdAt}</div>
-                </div>
-              </>
-            ))}
+    <div className="room-container p-0">
+      <div class="quiz-container p-0 h-75">
+        <div className="quiz w-100 h-100 d-flex justify-content-center align-items-center bg-light">
+          <div className="quiz-board" style={{ maxWidth: '45%' }}>
+            <h2 className="text-center my-4">Trivia Quiz</h2>
+            <button onClick={getQuestion} className="btn btn-success mb-4">
+              Next Question
+            </button>
+            {card}
+            <br />
+            <br />
           </div>
-          {error && <ErrorAlert details={'Failed to save the content'} />}
-          <form id="form-chat" onSubmit={handleSubmit}>
-            <div className="input-user-chat input-group">
-              <input
-                id="input-chat-bar"
-                type="text"
-                placeholder="Type here..."
-                value={chat}
-                className="form-control"
-                onChange={handleChatChange}
-                autoFocus
-              />
-              <button type="submit" className="room-send-btn btn btn-primary">
-                Send
-              </button>
+          <div className="count text-end">Score: {count}</div>
+        </div>
+      </div>
+      <div class="chat-container h-25">
+        <div className="chat-container text-start w-100">
+          <div className="chat-box">
+            <div className="messages">
+              {chats.map((chat) => (
+                <>
+                  <div className="message bg-light p-1">
+                    {`${chat.User.username}: ${chat.message}`}
+                    <div>{chat.createdAt}</div>
+                  </div>
+                </>
+              ))}
+              <div className="chat-box-end-ref" ref={messagesEndRef} />
             </div>
-          </form>
-        </div>
-        <div className="user-box">
-          <h2 className="text-center">Users</h2>
-          <div className="message bg-light p-4">
-            <span className="logged-in p-2">●</span>
-            kevin
+
+            {error && <ErrorAlert details={'Failed to save the content'} />}
+
+            <form id="form-chat" onSubmit={handleSubmit}>
+              <div className="input-user-chat input-group">
+                <input
+                  autoComplete="off"
+                  id="input-chat-bar"
+                  name="chat-message"
+                  type="text"
+                  placeholder="Type here..."
+                  value={chat}
+                  className="form-control"
+                  onChange={handleChatChange}
+                  autoFocus
+                />
+                <button type="submit" className="room-send-btn btn btn-primary">
+                  Send
+                </button>
+              </div>
+            </form>
           </div>
-          <div className="message bg-light p-4">
-            <span className="logged-in p-2">●</span>Khan
-          </div>
-          <div className="message bg-light p-4">
-            <span className="logged-in p-2">●</span>
-            Shin
-          </div>
-          <div className="message bg-light p-4">
-            <span
-              className="logged-in p-2
-          "
+
+          {/*Dummy data to be replaced*/}
+          <div className="user-box">
+            <h2 className="text-center">Users</h2>
+            <div className="message bg-light">
+              <span className="logged-in p-2">●</span>
+              kevin
+            </div>
+            <div className="message bg-light">
+              <span className="logged-in p-2">●</span>Khan
+            </div>
+            <div className="message bg-light">
+              <span className="logged-in p-2">●</span>
+              Shin
+            </div>
+            <div className="message bg-light">
+              <span
+                className="logged-in p-2
+            "
+              >
+                ●
+              </span>
+              Dewan
+            </div>
+            <Link
+              to="/session"
+              className="exit-btn bg-danger text-white text-center mb-0 "
             >
-              ●
-            </span>
-            Dewan
+              <h5>Exit Room</h5>
+            </Link>
           </div>
-          <Link
-            to="/session"
-            className="exit-btn bg-danger text-white text-center mb-0 "
-          >
-            <h5>Exit Room</h5>
-          </Link>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

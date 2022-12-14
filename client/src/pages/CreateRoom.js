@@ -43,21 +43,23 @@ function CreateRoom() {
   if (success) return <Navigate to={`/room/${data.roomName}?roomid=${roomId}`} />;
 
   return (
-    <div className="col-10 col-md-8 col-lg-7">
-      {error && <ErrorAlert details={'Failed to create room'} />}
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          className="form-control p-2 m-2"
-          name="roomName"
-          placeholder="Room Name"
-          value={data.roomName}
-          onChange={fieldChanged('roomName')}
-        />
-        <button type="submit" className="btn text-white p-3 mt-4">
-          Create Room
-        </button>
-      </form>
+    <div class="row justify-content-center mt-3">
+      <div className="col-10 col-md-8 col-lg-7">
+        {error && <ErrorAlert details={'Failed to create room'} />}
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            className="form-control p-2 m-2"
+            name="roomName"
+            placeholder="Room Name"
+            value={data.roomName}
+            onChange={fieldChanged('roomName')}
+          />
+          <button type="submit" className="btn text-white p-3 mt-4">
+            Create Room
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

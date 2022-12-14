@@ -15,6 +15,7 @@ body {
 /* Navigation */
 .navbar {
   background-color: #7f5af0b4;
+  height: 90px;
 }
 
 .container-fluid {
@@ -178,6 +179,10 @@ body {
 }
 
 /* Room */
+.room-container {
+  height: calc(100vh - 90px);
+}
+
 .quiz {
   border: 4px rgb(53, 151, 181) solid;
   width: 30%;
@@ -189,7 +194,7 @@ body {
   position: absolute;
   right: 10px;
   top: 10px;
-  font-size: 30px;
+  font-size: 24px;
   border: 4px solid #7f5af0b4;
   padding: 5px;
 }
@@ -197,22 +202,35 @@ body {
 .chat-container {
   display: flex;
   justify-content: space-between;
-  height: 500px;
 }
 
 .chat-box {
+  display: flex;
+  flex-direction: column;
   width: 80%;
   border: 4px rgb(53, 151, 181) solid;
   background-color: white;
   position: relative;
-  overflow-y: scroll;
   overflow-x: hidden;
+  justify-content: flex-end;
+}
+
+.chat-box .messages {
+  overflow-y: auto;
+}
+
+.chat-box .chat-box-end-ref {
+  border-width: 0;
 }
 
 .input-user-chat {
   position: sticky;
   bottom: 0;
   width: 100%;
+}
+
+#input-chat-bar{
+  box-shadow: 0 0 0 0;
 }
 
 .messages > div {
@@ -227,7 +245,6 @@ body {
 .user-box {
   width: 30%;
   background-color: white;
-  margin-left: 30px;
   overflow: hidden;
   border: 4px rgb(53, 151, 181) solid;
   display: flex;

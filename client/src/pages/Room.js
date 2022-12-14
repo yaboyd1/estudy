@@ -114,7 +114,7 @@ function Room() {
   };
 
   return (
-    <>
+    <div className="room-container">
       <div className="quiz w-100 my-5 d-flex justify-content-center align-items-center bg-light">
         <div className="quiz-board" style={{ maxWidth: '45%' }}>
           <h1 className="text-center mb-4">Trivia Quiz</h1>
@@ -187,7 +187,7 @@ function Room() {
           </Link>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

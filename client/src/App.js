@@ -19,7 +19,7 @@ import ListOfRooms from './pages/ListOfRooms';
 
 function Navigation() {
   return (
-    <nav className=" navbar navbar-expand-sm navbar-dark mb-3">
+    <nav className=" navbar navbar-expand-sm navbar-dark">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
           <img

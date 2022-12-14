@@ -81,8 +81,6 @@ function Room() {
 
     //subscrib when the user enters the room
     const socket = io.connect('http://localhost:8080');
-
-    //upon new chat recieve the new chat's
     socket.on(`chat${roomId}`, handleNewChat);
 
     //unsubscrib when the user leaves the room

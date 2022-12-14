@@ -216,7 +216,7 @@ body {
 }
 
 .chat-box .messages {
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .chat-box .chat-box-end-ref {

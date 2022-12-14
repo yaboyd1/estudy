@@ -61,7 +61,7 @@ function Room() {
       method: 'get',
       credentials: 'include',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json',     //localhost:8080/api/room_chats/1
       },
     })
       .then((res) => res.json())
@@ -100,6 +100,7 @@ function Room() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setChat('');
     try {
       let response = await fetch('/api/room_chats/', {
         method: 'POST',

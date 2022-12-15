@@ -15,7 +15,7 @@ _Frontend React client_
 - Based on `create-react-app`
   - pre-configured to work with the api
 - Bootstrap (v5)
-  - added to `/client/public/index.html` (_optional_ can be removed)
+  - added to `/client/public/index.html`
 - React Router (v6)
 
 ## Development Setup
@@ -27,7 +27,6 @@ Each team member will need to do this on their local machine.
 - Check if you have PostgreSQL installed
   - ✅ versions 10-14 should work
   - 🚫 version 15 has not been tested
-- If you need to install PostgreSQL see the [installing PostgreSQL guides](https://github.com/CUNYTechPrep/guides#postgresql)
 
 ### Create a PostgreSQL user and database
 

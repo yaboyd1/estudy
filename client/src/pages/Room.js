@@ -18,7 +18,6 @@ function Room() {
     })
       .then((res) => res.json())
       .then((body) => {
-        console.log(body);
         setUsers(body);
       });
   };
@@ -27,13 +26,29 @@ function Room() {
     onlineUsers();
   }, []);
 
+  const leavingUser = async () => {
+    fetch(`/api/rooms/${roomId}`, {
+      method: 'PUT',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        action: 'leave',
+      }),
+    })
+      .then((res) => res.json())
+      .then((body) => {
+        console.log(body);
+      });
+  };
+
   return (
     <div className="room-container p-0">
       <Quiz />
       <div className="chat-container h-25">
         <div className="chat-container text-start w-100">
           <RoomChat />
-          {/*Dummy data to be replaced*/}
           <div className="user-box">
             <h2 className="text-center">Users</h2>
             {users.map((user) => {
@@ -45,6 +60,7 @@ function Room() {
               );
             })}
             <Link
+              onClick={leavingUser}
               to="/session"
               className="exit-btn bg-danger text-white text-center mb-0 "
             >

@@ -14,21 +14,22 @@ function RoomSlot({ name, createdAt, id }) {
           action: 'enter',
         }),
       });
-    } catch (error) {
-    }
-  }
+    } catch (error) {}
+  };
 
   //create link with the room id
-  const path = { 
-    pathname: `/room/${name}`, 
-    search: `roomid=${id}` 
+  const path = {
+    pathname: `/room/${name}`,
+    search: `roomid=${id}`,
   };
 
   return (
     <div className="col-10 col-md-8 col-lg-7">
       <div className="card mb-4 shadow">
         <div className="card-body card-text">
-          <Link onClick={onClickLink} to={path}>{name}</Link>
+          <Link onClick={onClickLink} to={path}>
+            {name}
+          </Link>
         </div>
         <div className="card-footer small text-muted text-end">{createdAt}</div>
       </div>

@@ -32,9 +32,9 @@ router.get('/:id/users', passport.isAuthenticated(), async (req, res) => {
   const users = await User.findAll({
     attributes: ['username', 'role'],
     where: {
-      roomId: id
+      roomId: id,
     },
-    raw : true
+    raw: true,
   });
   return res.json(users);
 });
@@ -72,10 +72,12 @@ router.put('/:id', passport.isAuthenticated(), async (req, res) => {
   const { id } = req.params;
   const { action } = req.body;
   const room = await Room.findByPk(id);
-  
-  try{
+
+  try {
     if (!action || (action !== 'enter' && action !== 'leave')) {
-      return res.status(400).json({ Error: 'Enter the proper action \'enter\' or \'leave\'' });
+      return res
+        .status(400)
+        .json({ Error: "Enter the proper action 'enter' or 'leave'" });
     }
     if (!room) {
       return res.sendStatus(404);
@@ -89,12 +91,11 @@ router.put('/:id', passport.isAuthenticated(), async (req, res) => {
         },
         {
           where: {
-            id: req.user.id        
-          }
+            id: req.user.id,
+          },
         }
-      )
-    }
-    else if (action == 'leave') {
+      );
+    } else if (action == 'leave') {
       await User.update(
         {
           role: null,
@@ -102,10 +103,10 @@ router.put('/:id', passport.isAuthenticated(), async (req, res) => {
         },
         {
           where: {
-            id: req.user.id        
-          }
+            id: req.user.id,
+          },
         }
-      )
+      );
     }
     res.json(room);
   } catch (err) {
@@ -130,18 +131,18 @@ router.delete('/', passport.isAuthenticated(), async (req, res) => {
 
     await RoomChat.destroy({
       where: {
-        roomId: room.id
-      }
+        roomId: room.id,
+      },
     });
-    
+
     await User.update(
       {
-        role: null
+        role: null,
       },
       {
         where: {
-          roomId: room.id        
-        }
+          roomId: room.id,
+        },
       }
     );
 

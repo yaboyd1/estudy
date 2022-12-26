@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Quiz from '../components/Quiz';
 import RoomChat from '../components/RoomChat';
 
 function Room() {
   const [users, setUsers] = useState([]);
-
-  const onlineUsers = async (users) => {
-    fetch(`/api/rooms/${users}`, {
+  const { search } = useLocation();
+  const roomId = search.slice(8);
+  const onlineUsers = async () => {
+    fetch(`/api/rooms/${roomId}/users`, {
       method: 'get',
       credentials: 'include',
       headers: {
@@ -16,39 +18,32 @@ function Room() {
     })
       .then((res) => res.json())
       .then((body) => {
-        setUsers(JSON.parse(body));
+        console.log(body);
+        setUsers(body);
       });
   };
+
+  useEffect(() => {
+    onlineUsers();
+  }, []);
 
   return (
     <div className="room-container p-0">
       <Quiz />
-      <div class="chat-container h-25">
+      <div className="chat-container h-25">
         <div className="chat-container text-start w-100">
           <RoomChat />
           {/*Dummy data to be replaced*/}
           <div className="user-box">
             <h2 className="text-center">Users</h2>
-            <div className="message bg-light">
-              <span className="logged-in p-2">●</span>
-              kevin
-            </div>
-            <div className="message bg-light">
-              <span className="logged-in p-2">●</span>Khan
-            </div>
-            <div className="message bg-light">
-              <span className="logged-in p-2">●</span>
-              Shin
-            </div>
-            <div className="message bg-light">
-              <span
-                className="logged-in p-2
-            "
-              >
-                ●
-              </span>
-              Dewan
-            </div>
+            {users.map((user) => {
+              return (
+                <div className="message bg-light">
+                  <span className="logged-in p-2">●</span>
+                  {user.username}
+                </div>
+              );
+            })}
             <Link
               to="/session"
               className="exit-btn bg-danger text-white text-center mb-0 "

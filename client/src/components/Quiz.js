@@ -4,8 +4,9 @@ import QuestionCard from '../components/QuestionCard';
 import { shuffleArray } from '../lib/shuffleArray';
 import rawTriviaQuestion from '../lib/data';
 
+const triviaQuestion = rawTriviaQuestion.results[0];
+
 function Quiz() {
-  const triviaQuestion = rawTriviaQuestion.results[0];
   const [questionData, setQuestionData] = useState(triviaQuestion);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [count, setCount] = useState(0);
@@ -47,7 +48,7 @@ function Quiz() {
   };
 
   return (
-    <div class="quiz-container p-0 h-75">
+    <div className="quiz-container p-0 h-75">
       <div className="quiz w-100 h-100 d-flex justify-content-center align-items-center bg-light">
         <div className="quiz-board" style={{ maxWidth: '45%' }}>
           <h2 className="text-center my-4">Trivia Quiz</h2>

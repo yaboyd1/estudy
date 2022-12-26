@@ -7,6 +7,8 @@ const db = require('./models');
 const app = express();
 const PORT = process.env.PORT;
 const { io } = require('./utils/socket.js');
+const swaggerFile = require('../swagger_output.json')
+const swaggerUi = require("swagger-ui-express");
 
 // this lets us parse 'application/json' content in http requests
 app.use(express.json());
@@ -28,6 +30,9 @@ app.use(morgan(logFormat));
 
 // this mounts controllers/index.js at the route `/api`
 app.use('/api', require('./controllers'));
+
+// this serves the documentation page at the route '/api-docs'
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 // for production use, we serve the static react build folder
 if (process.env.NODE_ENV === 'production') {

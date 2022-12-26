@@ -7,11 +7,13 @@
     "start": "node api/app.js",
     "dev": "nodemon -r dotenv/config api/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cd client && npm install && npm run build"
+    "build": "cd client && npm install && npm run build",
+    "swagger-autogen": "node swagger.js"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "and": "^0.0.3",
     "bcryptjs": "^2.4.3",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
@@ -21,7 +23,9 @@
     "pg": "^8.8.0",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.25.2",
-    "socket.io": "^4.5.4"
+    "socket.io": "^4.5.4",
+    "swagger-autogen": "^2.22.0",
+    "swagger-ui-express": "^4.6.0"
   },
   "devDependencies": {
     "dotenv": "^8.6.0",

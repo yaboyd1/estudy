@@ -24,6 +24,21 @@ router.get('/', passport.isAuthenticated(), (req, res) => {
   Room.findAll({}).then((allRooms) => res.json(allRooms));
 });
 
+// @desc    Get all users in the room
+// @route   GET /api/rooms/:id/users
+// @access  Private
+router.get('/:id/users', passport.isAuthenticated(), async (req, res) => {
+  const { id } = req.params;
+  const users = await User.findAll({
+    attributes: ['username', 'role'],
+    where: {
+      roomId: id
+    },
+    raw : true
+  });
+  return res.json(users);
+});
+
 // @desc    Create a room and assign the room id to the user
 // @route   POST /api/rooms
 // @access  Private

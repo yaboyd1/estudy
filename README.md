@@ -81,5 +81,6 @@ npm start
 
 - api-backend will launch at: http://localhost:8080
 - react-client will launch at: http://localhost:3000
+- api documentation will be at: http://localhost:8080/api-docs
 
 > In production you will only deploy a single app. The react client will build into static files that will be served from the backend.

@@ -28,7 +28,6 @@ function CreateRoom() {
         }),
       });
       const body = await response.json();
-      console.log(body);
       if (response.ok) {
         setroomId(body.id);
         setSuccess(true);
@@ -43,7 +42,7 @@ function CreateRoom() {
   if (success) return <Navigate to={`/room/${data.roomName}?roomid=${roomId}`} />;
 
   return (
-    <div class="row justify-content-center mt-3">
+    <div className="row justify-content-center mt-3">
       <div className="col-10 col-md-8 col-lg-7">
         {error && <ErrorAlert details={'Failed to create room'} />}
         <form onSubmit={handleSubmit}>

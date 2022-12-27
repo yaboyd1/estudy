@@ -50,7 +50,6 @@ function Room() {
     })
       .then((res) => res.json())
       .then((body) => {
-        console.log(body);
       });
   };
 
@@ -62,9 +61,9 @@ function Room() {
           <RoomChat />
           <div className="user-box">
             <h2 className="text-center">Users</h2>
-            {users.map((user) => {
+            {users.map((user, i) => {
               return (
-                <div className="message bg-light">
+                <div key={i} className="message bg-light">
                   <span className="logged-in p-2">●</span>
                   {user.username}
                 </div>

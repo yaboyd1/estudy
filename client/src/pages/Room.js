@@ -11,11 +11,11 @@ function Room() {
   const { search } = useLocation();
   const userId = useAuth().user.id;
   const roomId = search.slice(8);
-  const socket = io.connect('http://localhost:8080', { 
-    query: { 
-      "roomId": `${roomId}`,
-      "userId": `${userId}`
-    } 
+  const socket = io.connect('http://localhost:8080', {
+    query: {
+      roomId: `${roomId}`,
+      userId: `${userId}`,
+    },
   });
 
   const onlineUsers = async () => {
@@ -57,8 +57,7 @@ function Room() {
       }),
     })
       .then((res) => res.json())
-      .then((body) => {
-      });
+      .then((body) => {});
   };
 
   return (
@@ -66,7 +65,7 @@ function Room() {
       <Quiz />
       <div className="chat-container h-25">
         <div className="chat-container text-start w-100">
-          <RoomChat socket={socket}/>
+          <RoomChat socket={socket} />
           <div className="user-box">
             <h2 className="text-center">Users</h2>
             {users.map((user, i) => {
@@ -80,7 +79,7 @@ function Room() {
             <Link
               onClick={leavingUser}
               to="/session"
-              className="exit-btn bg-danger text-white text-center mb-0 "
+              className="exit-btn bg-danger text-white text-center mb-0"
             >
               <h5>Exit Room</h5>
             </Link>

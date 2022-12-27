@@ -8,11 +8,15 @@ const triviaQuestion = rawTriviaQuestion.results[0];
 
 function Quiz() {
   const [questionData, setQuestionData] = useState(triviaQuestion);
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [count, setCount] = useState(0);
+  const [answer, setAnswer] = useState(questionData.correct_answer);
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
 
   const selectAnswer = (selection) => {
     setSelectedAnswer(selection);
+    if (selection === answer) {
+      setCount(count + 1);
+    }
   };
 
   let card;
@@ -21,7 +25,7 @@ function Quiz() {
     card = (
       <ResultCard
         correct={selectedAnswer === questionData.correct_answer}
-        answer={questionData.correct_answer}
+        answer={answer}
       />
     );
   } else {
@@ -33,6 +37,7 @@ function Quiz() {
       <QuestionCard
         question={questionData.question}
         options={shuffleArray(options)}
+        answer={answer}
         selectAnswer={selectAnswer}
       />
     );
@@ -44,6 +49,7 @@ function Quiz() {
       .then((body) => {
         setQuestionData(body.results[0]);
         setSelectedAnswer(null);
+        setAnswer(body.results[0].correct_answer);
       });
   };
 
@@ -59,7 +65,7 @@ function Quiz() {
           <br />
           <br />
         </div>
-        <div className="count text-end">Score: {count}</div>
+        <div className="count text-end">Score:{count}</div>
       </div>
     </div>
   );

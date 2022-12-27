@@ -9,6 +9,12 @@ function Room() {
   const [users, setUsers] = useState([]);
   const { search } = useLocation();
   const roomId = search.slice(8);
+  const socket = io.connect('http://localhost:8080', { 
+    query: { 
+      "roomid": `${roomId}`
+    } 
+  });
+
   const onlineUsers = async () => {
     fetch(`/api/rooms/${roomId}/users`, {
       method: 'get',
@@ -28,7 +34,6 @@ function Room() {
     onlineUsers();
 
     //subscibe to user entering leaving
-    const socket = io.connect('http://localhost:8080');
     socket.on(`user${roomId}`, onlineUsers);
 
     //unsubscribe
@@ -58,7 +63,7 @@ function Room() {
       <Quiz />
       <div className="chat-container h-25">
         <div className="chat-container text-start w-100">
-          <RoomChat />
+          <RoomChat socket={socket}/>
           <div className="user-box">
             <h2 className="text-center">Users</h2>
             {users.map((user, i) => {

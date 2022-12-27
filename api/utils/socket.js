@@ -1,5 +1,7 @@
 const { Server } = require('socket.io');
 const io = new Server();
+const db = require('../models');
+const { User } = db;
 
 var Socket = {
   emit: function (event, data) {
@@ -9,7 +11,25 @@ var Socket = {
 };
 
 io.on('connection', function (socket) {
-  console.log('A user connected');
+  const userId = socket.handshake.query.userId;
+  const roomId = socket.handshake.query.roomId;
+  socket.on("disconnect", async () => {
+    if(userId === 'undefined'){
+      return;
+    }
+    await User.update(
+      {
+        role: null,
+        roomId: null,
+      },
+      {
+        where: {
+          id: userId,
+        },
+      }
+    );
+    Socket.emit(`user${roomId}`);
+  })
 });
 
 exports.Socket = Socket;

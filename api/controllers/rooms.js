@@ -96,6 +96,7 @@ router.put('/:id', passport.isAuthenticated(), async (req, res) => {
           },
         }
       );
+      Socket.emit(`user${id}`);
     } else if (action == 'leave') {
       await User.update(
         {
@@ -109,8 +110,6 @@ router.put('/:id', passport.isAuthenticated(), async (req, res) => {
         }
       );
     }
-    Socket.emit(`user${id}`);
-    console.log(room);
     res.json(room);
   } catch (err) {
     return res.status(400).json(err);

@@ -3,7 +3,9 @@ import { useLocation } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import ErrorAlert from '../components/ErrorAlert';
 
-function RoomChat() {
+function RoomChat({
+  socket
+}) {
   const [chats, setChats] = useState([]);
   const [chat, setChat] = useState('');
   const [error, setError] = useState(false);
@@ -34,7 +36,6 @@ function RoomChat() {
     fetchPrevChats();
 
     //subscribe when the user enters the room
-    const socket = io.connect('http://localhost:8080');
     socket.on(`chat${roomId}`, handleNewChat);
 
     //unsubscribe when the user leaves the room

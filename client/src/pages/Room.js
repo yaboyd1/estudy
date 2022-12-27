@@ -4,14 +4,17 @@ import { Link } from 'react-router-dom';
 import Quiz from '../components/Quiz';
 import RoomChat from '../components/RoomChat';
 import { io } from 'socket.io-client';
+import { useAuth } from '../context/AuthContext';
 
 function Room() {
   const [users, setUsers] = useState([]);
   const { search } = useLocation();
+  const userId = useAuth().user.id;
   const roomId = search.slice(8);
   const socket = io.connect('http://localhost:8080', { 
     query: { 
-      "roomid": `${roomId}`
+      "roomId": `${roomId}`,
+      "userId": `${userId}`
     } 
   });
 

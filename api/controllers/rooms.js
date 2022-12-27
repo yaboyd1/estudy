@@ -2,6 +2,7 @@ const express = require('express');
 const passport = require('../middlewares/authentication');
 const router = express.Router();
 const db = require('../models');
+const { Socket } = require("../utils/socket");
 
 const { Room, User, RoomChat } = db;
 
@@ -108,6 +109,8 @@ router.put('/:id', passport.isAuthenticated(), async (req, res) => {
         }
       );
     }
+    Socket.emit(`user${id}`);
+    console.log(room);
     res.json(room);
   } catch (err) {
     return res.status(400).json(err);

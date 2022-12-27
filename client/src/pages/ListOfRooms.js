@@ -14,7 +14,6 @@ function ListOfRooms() {
       try {
         let response = await fetch('/api/rooms');
         let allRooms = await response.json();
-        console.log(allRooms);
         setRooms(allRooms);
         setLoading(false);
       } catch (error) {

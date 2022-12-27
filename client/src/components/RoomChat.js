@@ -59,7 +59,7 @@ function RoomChat() {
     event.preventDefault();
     setChat('');
     try {
-      let response = await fetch('/api/room_chats/', {
+      await fetch('/api/room_chats/', {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -78,13 +78,13 @@ function RoomChat() {
   return (
     <div className="chat-box">
       <div className="messages">
-        {chats.map((chat) => (
-          <>
+        {chats.map((chat, i) => (
+          <div key={i}>
             <div className="message bg-light p-1">
               {`${chat.User.username}: ${chat.message}`}
               <div>{chat.createdAt}</div>
             </div>
-          </>
+          </div>
         ))}
         <div className="chat-box-end-ref" ref={messagesEndRef} />
       </div>

@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Quiz from '../components/Quiz';
 import RoomChat from '../components/RoomChat';
+import { io } from 'socket.io-client';
 
 function Room() {
   const [users, setUsers] = useState([]);
@@ -23,7 +24,17 @@ function Room() {
   };
 
   useEffect(() => {
+    //fetch online users in the room
     onlineUsers();
+
+    //subscibe to user entering leaving
+    const socket = io.connect('http://localhost:8080');
+    socket.on(`user${roomId}`, onlineUsers);
+
+    //unsubscribe
+    return () => {
+      socket.close();
+    };
   }, []);
 
   const leavingUser = async () => {
@@ -39,7 +50,6 @@ function Room() {
     })
       .then((res) => res.json())
       .then((body) => {
-        console.log(body);
       });
   };
 
@@ -51,9 +61,9 @@ function Room() {
           <RoomChat />
           <div className="user-box">
             <h2 className="text-center">Users</h2>
-            {users.map((user) => {
+            {users.map((user, i) => {
               return (
-                <div className="message bg-light">
+                <div key={i} className="message bg-light">
                   <span className="logged-in p-2">●</span>
                   {user.username}
                 </div>

@@ -39,23 +39,25 @@ function PostFormPage() {
   if (success) return <Navigate to="/post/new" />;
 
   return (
-    <div className="col-10 col-md-8 col-lg-7">
-      {error && <ErrorAlert details={'Failed to save the content'} />}
-      <form onSubmit={handleSubmit}>
-        <div className="input-group">
-          <input
-            type="text"
-            placeholder="Start a new post :)"
-            value={content}
-            className="form-control"
-            onChange={handleContentChange}
-            autoFocus
-          />
-          <button type="submit" className="btn btn-primary">
-            Save Post
-          </button>
-        </div>
-      </form>
+    <div className="d-flex justify-content-center mt-4">
+      <div className="row w-50">
+        {error && <ErrorAlert details={'Failed to save the content'} />}
+        <form onSubmit={handleSubmit}>
+          <div className="input-group">
+            <input
+              type="text"
+              placeholder="Start chatting..."
+              value={content}
+              className="form-control"
+              onChange={handleContentChange}
+              autoFocus
+            />
+            <button type="submit" className="btn btn-primary">
+              Send
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

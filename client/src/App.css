@@ -74,7 +74,6 @@ body {
 
 /* Home */
 .head-1 {
-  width: 85%;
   overflow: hidden; /* Ensures the content is not revealed */
   border-right: 0.1em solid white; /* The typwriter cursor */
   white-space: nowrap; /* Keeps the content on a single line */
@@ -104,6 +103,9 @@ body {
 }
 
 @media (max-width: 850px) {
+  .head-1 {
+    width: 100vw !important;
+  }
   .content {
     flex-wrap: wrap;
   }
@@ -229,7 +231,7 @@ body {
   width: 100%;
 }
 
-#input-chat-bar{
+#input-chat-bar {
   box-shadow: 0 0 0 0;
 }
 

@@ -7,7 +7,7 @@ import AboutUsPage from './pages/AboutUsPage';
 import LoginPage from './pages/LoginPage';
 import AfterLoginPage from './pages/AfterLoginPage';
 import SignupPage from './pages/SignupPage';
-import { AuthProvider } from './context/AuthContext';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import AuthButton from './components/AuthButton';
 import Greeting from './components/Greeting';
 import Home from './pages/Home';
@@ -18,6 +18,7 @@ import PrivateRouteRequiresAuth from './components/PrivateRouteRequiresAuth';
 import ListOfRooms from './pages/ListOfRooms';
 
 function Navigation() {
+  let auth = useAuth();
   return (
     <nav className=" navbar navbar-expand-sm navbar-dark">
       <div className="container-fluid">
@@ -49,12 +50,13 @@ function Navigation() {
                 About Us
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/signup">
-                Sign Up
-              </NavLink>
-            </li>
-
+            {!auth.isAuthenticated && (
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/signup">
+                  Sign Up
+                </NavLink>
+              </li>
+            )}
             <AuthButton />
           </ul>
         </div>
@@ -69,58 +71,56 @@ function App() {
       <BrowserRouter>
         <Navigation />
         <div className="container-xl text-center p-0">
-          <div className="justify-content-center">
-            <Routes>
-              <Route path="/login" element={<LoginPage />} />
-              <Route
-                path="/session"
-                element={
-                  <PrivateRouteRequiresAuth>
-                    <AfterLoginPage />
-                  </PrivateRouteRequiresAuth>
-                }
-              />
-              <Route
-                path="/posts/new"
-                element={
-                  <PrivateRouteRequiresAuth>
-                    {/* In react-router v6 we protect routes like this */}
-                    <PostFormPage />
-                  </PrivateRouteRequiresAuth>
-                }
-              />
-              <Route
-                path="/create-room"
-                element={
-                  <PrivateRouteRequiresAuth>
-                    <CreateRoom />
-                  </PrivateRouteRequiresAuth>
-                }
-              />
-              <Route
-                path="/room"
-                element={
-                  <PrivateRouteRequiresAuth>
-                    <Room />
-                  </PrivateRouteRequiresAuth>
-                }
-              />
-              <Route
-                path="/rooms"
-                element={
-                  <PrivateRouteRequiresAuth>
-                    <ListOfRooms />
-                  </PrivateRouteRequiresAuth>
-                }
-              />
-              <Route path="/room/:id" element={<Room />} />
-              <Route path="/signup" element={<SignupPage />} />
-              <Route path="/posts/:id" element={<ShowPostPage />} />
-              <Route path="/about-us" element={<AboutUsPage />} />
-              <Route path="/" element={<Home />} />
-              <Route path="/post/new" element={<PostsListPage />} />
-            </Routes>
-          </div>
+          <Routes>
+            <Route path="/login" element={<LoginPage />} />
+            <Route
+              path="/session"
+              element={
+                <PrivateRouteRequiresAuth>
+                  <AfterLoginPage />
+                </PrivateRouteRequiresAuth>
+              }
+            />
+            <Route
+              path="/posts/new"
+              element={
+                <PrivateRouteRequiresAuth>
+                  {/* In react-router v6 we protect routes like this */}
+                  <PostFormPage />
+                </PrivateRouteRequiresAuth>
+              }
+            />
+            <Route
+              path="/create-room"
+              element={
+                <PrivateRouteRequiresAuth>
+                  <CreateRoom />
+                </PrivateRouteRequiresAuth>
+              }
+            />
+            <Route
+              path="/room"
+              element={
+                <PrivateRouteRequiresAuth>
+                  <Room />
+                </PrivateRouteRequiresAuth>
+              }
+            />
+            <Route
+              path="/rooms"
+              element={
+                <PrivateRouteRequiresAuth>
+                  <ListOfRooms />
+                </PrivateRouteRequiresAuth>
+              }
+            />
+            <Route path="/room/:id" element={<Room />} />
+            <Route path="/signup" element={<SignupPage />} />
+            <Route path="/posts/:id" element={<ShowPostPage />} />
+            <Route path="/about-us" element={<AboutUsPage />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/post/new" element={<PostsListPage />} />
+          </Routes>
         </div>
       </BrowserRouter>
     </AuthProvider>

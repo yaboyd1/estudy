@@ -4,9 +4,8 @@ import { io } from 'socket.io-client';
 import ErrorAlert from '../components/ErrorAlert';
 
 function RoomChat({
-  socket
+  chats
 }) {
-  const [chats, setChats] = useState([]);
   const [chat, setChat] = useState('');
   const [error, setError] = useState(false);
   const { search } = useLocation();
@@ -17,40 +16,9 @@ function RoomChat({
     messagesEndRef.current?.scrollIntoView();
   };
 
-  const fetchPrevChats = () => {
-    fetch(`/api/room_chats/${roomId}`, {
-      method: 'get',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((res) => res.json())
-      .then((body) => {
-        setChats(JSON.parse(body));
-      });
-  };
-
-  useEffect(() => {
-    //fetch all chats
-    fetchPrevChats();
-
-    //subscribe when the user enters the room
-    socket.on(`chat${roomId}`, handleNewChat);
-
-    //unsubscribe when the user leaves the room
-    return () => {
-      socket.close();
-    };
-  }, []);
-
   useEffect(() => {
     scrollToBottom();
   }, [chats]);
-
-  const handleNewChat = (chat, callback) => {
-    setChats((prevChats) => [...prevChats, chat]);
-  };
 
   const handleChatChange = (event) => {
     setChat(event.target.value);

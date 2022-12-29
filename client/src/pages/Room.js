@@ -8,15 +8,10 @@ import { useAuth } from '../context/AuthContext';
 
 function Room() {
   const [users, setUsers] = useState([]);
+  const [chats, setChats] = useState([]);
   const { search } = useLocation();
   const userId = useAuth().user.id;
   const roomId = search.slice(8);
-  const socket = io.connect('http://localhost:8080', {
-    query: {
-      roomId: `${roomId}`,
-      userId: `${userId}`,
-    },
-  });
 
   const onlineUsers = async () => {
     fetch(`/api/rooms/${roomId}/users`, {
@@ -32,11 +27,40 @@ function Room() {
       });
   };
 
+  const handleNewChat = (chat, callback) => {
+    setChats((prevChats) => [...prevChats, chat]);
+  };
+
+  const fetchPrevChats = () => {
+    fetch(`/api/room_chats/${roomId}`, {
+      method: 'get',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((res) => res.json())
+      .then((body) => {
+        setChats(JSON.parse(body));
+      });
+  };
+
   useEffect(() => {
     //fetch online users in the room
-    onlineUsers();
+    console.log("connect");
 
+    fetchPrevChats();
+    onlineUsers();
+    const socket = io.connect('http://localhost:8080', {
+      reconnection:false,
+      query: {
+        roomId: `${roomId}`,
+        userId: `${userId}`,
+      },
+    });
+    
     //subscibe to user entering leaving
+    socket.on(`chat${roomId}`, handleNewChat);
     socket.on(`user${roomId}`, onlineUsers);
 
     //unsubscribe
@@ -65,7 +89,7 @@ function Room() {
       <Quiz />
       <div className="chat-container h-25">
         <div className="chat-container text-start w-100">
-          <RoomChat socket={socket} />
+          <RoomChat chats={chats} />
           <div className="user-box">
             <h2 className="text-center">Users</h2>
             {users.map((user, i) => {
@@ -77,7 +101,7 @@ function Room() {
               );
             })}
             <Link
-              onClick={leavingUser}
+
               to="/session"
               className="exit-btn bg-danger text-white text-center mb-0"
             >

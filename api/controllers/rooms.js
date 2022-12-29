@@ -96,6 +96,7 @@ router.put('/:id', passport.isAuthenticated(), async (req, res) => {
           },
         }
       );
+      await room.increment( 'numOfUsers' );
       Socket.emit(`user${id}`);
     } else if (action == 'leave') {
       await User.update(

@@ -219,6 +219,11 @@ body {
 
 .chat-box .messages {
   overflow-y: auto;
+  font-family: sans-serif;
+}
+.chat-box .messages .message-time {
+  font-size: small;
+  vertical-align: baseline;
 }
 
 .chat-box .chat-box-end-ref {
@@ -233,10 +238,11 @@ body {
 
 #input-chat-bar {
   box-shadow: 0 0 0 0;
+  font-family: sans-serif;
 }
 
 .messages > div {
-  border-bottom: #16161a solid 2px;
+  border-bottom: #16161a solid 1px;
 }
 
 .room-send-btn {

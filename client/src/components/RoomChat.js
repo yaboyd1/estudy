@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import { io } from 'socket.io-client';
 import ErrorAlert from '../components/ErrorAlert';
 
 function RoomChat({ chats }) {
@@ -46,10 +45,13 @@ function RoomChat({ chats }) {
     <div className="chat-box">
       <div className="messages">
         {chats.map((chat, i) => (
-          <div key={i}>
-            <div className="message bg-light p-1">
+          <div key={i} className="message d-flex justify-content-between align-items-end bg-light p-1">
+            <div className="message-content">
               {`${chat.User.username}: ${chat.message}`}
-              <div>{chat.createdAt}</div>
+            </div>
+            <div className="message-time">
+                {/*hour*/chat.createdAt.split('T')[1].split(':').slice(0, 1)}:
+                {/*minute*/chat.createdAt.split('T')[1].split(':').slice(1, 2)}
             </div>
           </div>
         ))}

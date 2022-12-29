@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import { io } from 'socket.io-client';
 import ErrorAlert from '../components/ErrorAlert';
 
 function RoomChat({

@@ -1,9 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
+import { io } from 'socket.io-client';
 import ErrorAlert from '../components/ErrorAlert';
 
 function RoomChat({ chats }) {
   const [chat, setChat] = useState('');
   const [error, setError] = useState(false);
+  const { search } = useLocation();
+  const roomId = search.slice(8);
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -44,12 +48,8 @@ function RoomChat({ chats }) {
         {chats.map((chat, i) => (
           <div key={i}>
             <div className="message bg-light p-1">
-              <div className="message">
-                {`${chat.User.username}: ${chat.message}`}
-                <span className="message-time-sent">
-                  {chat.createdAt.slice(11, 19)}
-                </span>
-              </div>
+              {`${chat.User.username}: ${chat.message}`}
+              <div>{chat.createdAt}</div>
             </div>
           </div>
         ))}

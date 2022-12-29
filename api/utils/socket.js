@@ -1,7 +1,7 @@
 const { Server } = require('socket.io');
 const io = new Server();
 const db = require('../models');
-const { User } = db;
+const { User, Room, RoomChat } = db;
 
 var Socket = {
   emit: function (event, data) {
@@ -28,6 +28,16 @@ io.on('connection', function (socket) {
         },
       }
     );
+    const room = await Room.findByPk(roomId);
+    await room.decrement( 'numOfUsers' );
+    if(room.numOfUsers  <= 0) {
+    RoomChat.destroy({
+      where: {
+        roomId: roomId,
+      },
+    });
+    room.destroy();
+    }
     Socket.emit(`user${roomId}`);
   })
 });

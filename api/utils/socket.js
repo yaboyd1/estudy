@@ -13,8 +13,8 @@ var Socket = {
 io.on('connection', function (socket) {
   const userId = socket.handshake.query.userId;
   const roomId = socket.handshake.query.roomId;
-  socket.on("disconnect", async () => {
-    if(userId === 'undefined'){
+  socket.on('disconnect', async () => {
+    if (userId === 'undefined') {
       return;
     }
     await User.update(
@@ -29,17 +29,17 @@ io.on('connection', function (socket) {
       }
     );
     const room = await Room.findByPk(roomId);
-    await room.decrement( 'numOfUsers' );
-    if(room.numOfUsers  <= 0) {
-    RoomChat.destroy({
-      where: {
-        roomId: roomId,
-      },
-    });
-    room.destroy();
+    await room.decrement('numOfUsers');
+    if (room.numOfUsers <= 0) {
+      RoomChat.destroy({
+        where: {
+          roomId: roomId,
+        },
+      });
+      room.destroy();
     }
     Socket.emit(`user${roomId}`);
-  })
+  });
 });
 
 exports.Socket = Socket;

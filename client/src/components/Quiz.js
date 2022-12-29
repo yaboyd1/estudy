@@ -55,17 +55,19 @@ function Quiz() {
 
   return (
     <div className="quiz-container p-0 h-75">
-      <div className="quiz w-100 h-100 d-flex justify-content-center align-items-center bg-light">
-        <div className="quiz-board" style={{ maxWidth: '45%' }}>
-          <h2 className="text-center my-4">Trivia Quiz</h2>
-          <button onClick={getQuestion} className="btn btn-success mb-4">
-            Next Question
-          </button>
+      <div className="quiz w-100 h-100 d-flex bg-light">
+        <div className="row quiz-board">
+          <h2 className="text-start fs-3 my-3">Trivia Quiz</h2>
+          <hr />
           {card}
-          <br />
-          <br />
         </div>
-        <div className="count text-end">Score:{count}</div>
+        <button
+          onClick={getQuestion}
+          className="btn-next-question btn btn-success mb-4"
+        >
+          Next Question
+        </button>
+        <div className="count">Score:{count}</div>
       </div>
     </div>
   );

@@ -49,7 +49,7 @@ function SignupPage() {
   }
 
   return (
-    <div class="row justify-content-center mt-3">
+    <div className="row justify-content-center mt-3">
       <div className="col-10 col-md-8 col-lg-7">
         <form onSubmit={signup}>
           <div className="form-row">

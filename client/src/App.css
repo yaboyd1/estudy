@@ -191,6 +191,45 @@ body {
   position: relative;
 }
 
+.quiz-board {
+  text-align: center;
+  width: 100%;
+  height: 20%;
+  position: absolute;
+  top: 0;
+}
+
+.quiz-questions {
+  display: flex;
+  justify-content: start;
+  margin-left: 5px;
+}
+
+.quiz-btns {
+  max-width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.quiz-btn {
+  border-radius: 0;
+  width: 250px !important;
+  border: rgb(30, 143, 209) solid 2px;
+}
+
+.btn-next-question {
+  position: absolute;
+  bottom: 0px;
+  width: 140px;
+  height: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  border-radius: 0;
+}
+
 .count {
   align-self: flex-start;
   position: absolute;
@@ -211,10 +250,12 @@ body {
   flex-direction: column;
   width: 80%;
   border: 4px rgb(53, 151, 181) solid;
-  background-color: white;
   position: relative;
   overflow-x: hidden;
   justify-content: flex-end;
+  border-top: none;
+  border-right: none;
+  background-color: white;
 }
 
 .chat-box .messages {
@@ -245,6 +286,16 @@ body {
   border-bottom: #16161a solid 1px;
 }
 
+.message {
+  overflow: hidden;
+  color: #353436;
+}
+
+.message-time-sent {
+  float: right;
+  color: #7c52f1;
+}
+
 .room-send-btn {
   border-radius: 0;
   width: 100px;
@@ -258,6 +309,7 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
+  border-top: none;
 }
 
 .logged-in {

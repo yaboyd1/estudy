@@ -1,10 +1,9 @@
 const express = require('express');
 const passport = require('../middlewares/authentication');
-const { Sequelize } = require('../models');
 const router = express.Router();
 const db = require('../models');
 const { RoomChat, User } = db;
-const { Socket } = require("../utils/socket");
+const { Socket } = require('../utils/socket');
 
 // This is a simple example for providing basic CRUD routes for
 // a resource/model. It provides the following:
@@ -25,17 +24,16 @@ router.post('/', passport.isAuthenticated(), async (req, res) => {
   const newRoomChat = await RoomChat.create({
     message: message,
     userId: req.user.id,
-    roomId: roomId
+    roomId: roomId,
   });
 
   res.status(201).json(newRoomChat);
   Socket.emit(`chat${roomId}`, {
     User: {
-      username: user.username
+      username: user.username,
     },
-    ...newRoomChat.dataValues
+    ...newRoomChat.dataValues,
   });
-
 });
 
 // @desc    Get all chats in the room
@@ -43,20 +41,21 @@ router.post('/', passport.isAuthenticated(), async (req, res) => {
 // @access  Private
 router.get('/:roomId', passport.isAuthenticated(), (req, res) => {
   const { roomId } = req.params;
-  RoomChat.findAll({ 
-    where: { 
-      roomId: roomId 
+  RoomChat.findAll({
+    where: {
+      roomId: roomId,
     },
     include: {
       model: User,
-      attributes: ['username']
-    }
+      attributes: ['username'],
+    },
   })
-    .then((allChats) => { 
-      res.json(JSON.stringify(allChats, null, 2)); 
+    .then((allChats) => {
+      res.json(JSON.stringify(allChats, null, 2));
     })
-    .catch((err) => { res.status(400).json(err); });
+    .catch((err) => {
+      res.status(400).json(err);
+    });
 });
-
 
 module.exports = router;

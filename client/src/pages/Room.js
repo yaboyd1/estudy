@@ -47,18 +47,18 @@ function Room() {
 
   useEffect(() => {
     //fetch online users in the room
-    console.log("connect");
+    console.log('connect');
 
     fetchPrevChats();
     onlineUsers();
     const socket = io.connect('http://localhost:8080', {
-      reconnection:false,
+      reconnection: false,
       query: {
         roomId: `${roomId}`,
         userId: `${userId}`,
       },
     });
-    
+
     //subscibe to user entering leaving
     socket.on(`chat${roomId}`, handleNewChat);
     socket.on(`user${roomId}`, onlineUsers);
@@ -68,21 +68,6 @@ function Room() {
       socket.close();
     };
   }, []);
-
-  const leavingUser = async () => {
-    fetch(`/api/rooms/${roomId}`, {
-      method: 'PUT',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        action: 'leave',
-      }),
-    })
-      .then((res) => res.json())
-      .then((body) => {});
-  };
 
   return (
     <div className="room-container p-0">
@@ -101,7 +86,6 @@ function Room() {
               );
             })}
             <Link
-
               to="/session"
               className="exit-btn bg-danger text-white text-center mb-0"
             >

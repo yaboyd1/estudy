@@ -141,6 +141,25 @@ body {
   color: white;
 }
 
+/* Forum */
+.card {
+  cursor: pointer;
+}
+.card:hover {
+  background-color: rgb(239, 239, 239);
+}
+
+.card-text {
+  width: 100%;
+  color: black;
+  text-align: left;
+}
+
+.card-text span {
+  font-size: 1.3rem;
+  color: #7c52f1;
+}
+
 /* Login | Sign up */
 .form-control {
   border-radius: 0;
@@ -166,6 +185,11 @@ body {
 
 .btn-session:hover {
   background-color: #7f5af0;
+}
+
+/* List of Rooms */
+.rooms {
+  border-color: rgb(33, 202, 202) !important;
 }
 
 /* Room */

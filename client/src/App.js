@@ -50,13 +50,13 @@ function Navigation() {
                     Achievements
                   </NavLink>
                 </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/posts/new">
+                    Forum
+                  </NavLink>
+                </li>
               </>
             )}
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/posts/new">
-                Forum
-              </NavLink>
-            </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/about-us">
                 About Us

@@ -35,7 +35,7 @@ function PostsListPage() {
   if (loading) return <LoadingSpinner />;
 
   return (
-    <div className="container-fluid text-center mt-4">
+    <div className="container-fluid text-center">
       <div className="row justify-content-center">
         {posts.map((entryData) => (
           <MicroPostCard {...entryData} key={entryData.id} />

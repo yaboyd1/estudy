@@ -41,19 +41,19 @@ function PostFormPage() {
   return (
     <div className="d-flex justify-content-center mt-4">
       <div className="row w-50">
-        {error && <ErrorAlert details={'Failed to save the content'} />}
+        {error && <ErrorAlert details={'failed to save the content'} />}
         <form onSubmit={handleSubmit}>
           <div className="input-group">
             <input
               type="text"
-              placeholder="Start chatting..."
+              placeholder="Type your message here..."
               value={content}
               className="form-control"
               onChange={handleContentChange}
               autoFocus
             />
             <button type="submit" className="btn btn-primary">
-              Send
+              Submit Post
             </button>
           </div>
         </form>

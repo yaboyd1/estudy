@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       content: {
         type: DataTypes.STRING,
         validate: {
-          len: [3, 250],
+          len: [1, 250],
           notEmpty: true,
         },
       },

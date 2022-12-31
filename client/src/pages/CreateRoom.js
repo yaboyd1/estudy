@@ -5,7 +5,11 @@ import ErrorAlert from '../components/ErrorAlert';
 function CreateRoom() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
-  const [data, setData] = useState({ roomName: '', url: '' });
+  const [data, setData] = useState({
+    roomName: '',
+    url: '',
+    description: '',
+  });
   const [roomId, setroomId] = useState();
   const fieldChanged = (name) => {
     return (event) => {
@@ -15,8 +19,13 @@ function CreateRoom() {
   };
 
   const handleSubmit = async (event) => {
+    if (data.description === '') {
+      data.description = 'Enter in our room and enjoy with us! 😃';
+    }
+
     event.preventDefault();
     try {
+      console.log(data.description);
       let response = await fetch('/api/rooms', {
         method: 'POST',
         credentials: 'include',
@@ -25,9 +34,11 @@ function CreateRoom() {
         },
         body: JSON.stringify({
           name: data.roomName,
+          description: data.description,
         }),
       });
       const body = await response.json();
+      console.log(body);
       if (response.ok) {
         setroomId(body.id);
         setSuccess(true);
@@ -39,7 +50,8 @@ function CreateRoom() {
       setError(true);
     }
   };
-  if (success) return <Navigate to={`/room/${data.roomName}?roomid=${roomId}`} />;
+  if (success)
+    return <Navigate to={`/room/${data.roomName}?roomid=${roomId}`} />;
 
   return (
     <div className="row justify-content-center mt-3">
@@ -53,6 +65,14 @@ function CreateRoom() {
             placeholder="Room Name"
             value={data.roomName}
             onChange={fieldChanged('roomName')}
+          />
+          <input
+            type="text"
+            className="form-control p-2 m-2"
+            name="description"
+            placeholder="Description (Optional)"
+            value={data.description}
+            onChange={fieldChanged('description')}
           />
           <button type="submit" className="btn text-white p-3 mt-4">
             Create Room

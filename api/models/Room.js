@@ -20,7 +20,11 @@ module.exports = (sequelize, DataTypes) => {
       },
       numOfUsers: {
         type: DataTypes.INTEGER,
-        defaultValue: 1
+        defaultValue: 1,
+      },
+
+      description: {
+        type: DataTypes.STRING,
       },
     },
     {

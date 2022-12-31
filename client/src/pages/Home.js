@@ -90,12 +90,6 @@ function Home() {
               Join Room
             </button>
           </div>
-          <div className="session-options">
-            <button className="btn-session rounded">Forum</button>
-          </div>
-          <div className="session-options">
-            <button className="btn-session rounded">Friends</button>
-          </div>
         </div>
       )}
     </>

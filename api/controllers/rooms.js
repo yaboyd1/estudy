@@ -2,7 +2,7 @@ const express = require('express');
 const passport = require('../middlewares/authentication');
 const router = express.Router();
 const db = require('../models');
-const { Socket } = require("../utils/socket");
+const { Socket } = require('../utils/socket');
 
 const { Room, User, RoomChat } = db;
 
@@ -44,9 +44,9 @@ router.get('/:id/users', passport.isAuthenticated(), async (req, res) => {
 // @route   POST /api/rooms
 // @access  Private
 router.post('/', passport.isAuthenticated(), (req, res) => {
-  let { name } = req.body;
+  let { name, description } = req.body;
   const path = encodeURI(name);
-  Room.create({ name, url: path })
+  Room.create({ name, url: path, description })
     .then((newRoom) => {
       User.update(
         {
@@ -96,7 +96,7 @@ router.put('/:id', passport.isAuthenticated(), async (req, res) => {
           },
         }
       );
-      await room.increment( 'numOfUsers' );
+      await room.increment('numOfUsers');
       Socket.emit(`user${id}`);
     } else if (action == 'leave') {
       await User.update(

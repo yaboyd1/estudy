@@ -38,18 +38,6 @@ body {
   margin-right: 10px;
 }
 
-.session {
-  order: 3;
-  margin-right: 10px;
-  color: white;
-  text-decoration: none;
-}
-
-.session:hover {
-  color: rgba(255, 255, 255, 0.697);
-  text-decoration: underline;
-}
-
 .btn-dropdown {
   margin-right: 20px;
   background-color: rgba(255, 255, 255, 0.271) !important;

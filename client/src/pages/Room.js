@@ -86,7 +86,7 @@ function Room() {
               );
             })}
             <Link
-              to="/session"
+              to="/"
               className="exit-btn bg-danger text-white text-center mb-0"
             >
               <h5>Exit Room</h5>

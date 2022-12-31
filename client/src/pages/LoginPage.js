@@ -9,7 +9,7 @@ function LoginPage() {
   const [data, setData] = useState({ username: '', password: '' });
   const [error, setError] = useState(false);
 
-  const from = location.state?.from?.pathname || '/session';
+  const from = location.state?.from?.pathname || '/';
 
   const fieldChanged = (name) => {
     return (event) => {

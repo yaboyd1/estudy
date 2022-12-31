@@ -3,9 +3,9 @@ import { BrowserRouter, Routes, Route, Link, NavLink } from 'react-router-dom';
 import PostsListPage from './pages/PostsListPage';
 import PostFormPage from './pages/PostFormPage';
 import ShowPostPage from './pages/ShowPostPage';
+import Achievements from './pages/Achievements';
 import AboutUsPage from './pages/AboutUsPage';
 import LoginPage from './pages/LoginPage';
-import AfterLoginPage from './pages/AfterLoginPage';
 import SignupPage from './pages/SignupPage';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import AuthButton from './components/AuthButton';
@@ -18,7 +18,7 @@ import PrivateRouteRequiresAuth from './components/PrivateRouteRequiresAuth';
 import ListOfRooms from './pages/ListOfRooms';
 
 function Navigation() {
-  let auth = useAuth();
+  const auth = useAuth();
   return (
     <nav className=" navbar navbar-expand-sm navbar-dark">
       <div className="container-fluid">
@@ -40,9 +40,21 @@ function Navigation() {
             Menu
           </button>
           <ul className="dropdown-menu">
+            {auth.isAuthenticated && (
+              <>
+                <li className="nav-item">
+                  <NavLink className="nav-link">Friends</NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/achievements">
+                    Achievements
+                  </NavLink>
+                </li>
+              </>
+            )}
             <li className="nav-item">
               <NavLink className="nav-link" to="/posts/new">
-                Global Chat
+                Forum
               </NavLink>
             </li>
             <li className="nav-item">
@@ -74,10 +86,10 @@ function App() {
           <Routes>
             <Route path="/login" element={<LoginPage />} />
             <Route
-              path="/session"
+              path="/achievements"
               element={
                 <PrivateRouteRequiresAuth>
-                  <AfterLoginPage />
+                  <Achievements />
                 </PrivateRouteRequiresAuth>
               }
             />

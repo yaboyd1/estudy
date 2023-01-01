@@ -75,16 +75,18 @@ function Room() {
       <div className="chat-container h-25">
         <div className="chat-container text-start w-100">
           <RoomChat chats={chats} />
-          <div className="user-box">
+          <div className="user-box bg-light">
             <h2 className="text-center">Users</h2>
-            {users.map((user, i) => {
-              return (
-                <div key={i} className="message bg-light">
-                  <span className="logged-in p-2">●</span>
-                  {user.username}
-                </div>
-              );
-            })}
+            <ul className="user-list">
+              {users.map((user, i) => {
+                return (
+                  <li key={i} className="message">
+                    <span className="logged-in p-2">●</span>
+                    {user.username}
+                  </li>
+                );
+              })}
+            </ul>
             <Link
               to="/"
               className="exit-btn bg-danger text-white text-center mb-0"

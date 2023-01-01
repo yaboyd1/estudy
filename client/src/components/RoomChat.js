@@ -51,7 +51,7 @@ function RoomChat({ chats }) {
               {`${chat.User.username}: ${chat.message}`}
             </div>
             <div className="message-time">
-              {/*test*/ new Date(chat.createdAt).toLocaleTimeString('en-US', { timeZone: 'EST' })}
+              {new Date(chat.createdAt).toLocaleTimeString('en-US', { timeZone: 'EST' })}
             </div>
           </div>
         ))}

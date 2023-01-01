@@ -25,7 +25,6 @@ function CreateRoom() {
 
     event.preventDefault();
     try {
-      console.log(data.description);
       let response = await fetch('/api/rooms', {
         method: 'POST',
         credentials: 'include',
@@ -38,7 +37,6 @@ function CreateRoom() {
         }),
       });
       const body = await response.json();
-      console.log(body);
       if (response.ok) {
         setroomId(body.id);
         setSuccess(true);

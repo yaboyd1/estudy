@@ -14,8 +14,6 @@ function PostsListPage() {
       try {
         let response = await fetch('/api/micro_posts');
         let allPosts = await response.json();
-        console.log(response);
-        console.log(allPosts);
         setPosts(allPosts);
         setLoading(false);
       } catch (error) {

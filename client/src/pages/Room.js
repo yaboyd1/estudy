@@ -46,9 +46,7 @@ function Room() {
   };
 
   useEffect(() => {
-    //fetch online users in the room
-    console.log('connect');
-
+    //fetch existing online users and chats in the room
     fetchPrevChats();
     onlineUsers();
     const socket = io.connect('http://localhost:8080', {
@@ -59,7 +57,7 @@ function Room() {
       },
     });
 
-    //subscibe to user entering leaving
+    //subscibe to new user and chat event
     socket.on(`chat${roomId}`, handleNewChat);
     socket.on(`user${roomId}`, onlineUsers);
 

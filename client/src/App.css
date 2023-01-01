@@ -303,6 +303,10 @@ body {
   color: #353436;
 }
 
+.messages-background {
+  flex-grow: 1;
+}
+
 .message-time-sent {
   float: right;
   color: #7c52f1;
@@ -324,16 +328,19 @@ body {
   border-top: none;
 }
 
+.user-list {
+  margin: 0;
+  padding: 0;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
 .logged-in {
   color: green;
 }
 
 .exit-btn {
-  border-top: none;
   text-decoration: none;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
 }
 
 .exit-btn:hover {

@@ -46,9 +46,7 @@ function Room() {
   };
 
   useEffect(() => {
-    //fetch online users in the room
-    console.log('connect');
-
+    //fetch existing online users and chats in the room
     fetchPrevChats();
     onlineUsers();
     const socket = io.connect('http://localhost:8080', {
@@ -59,7 +57,7 @@ function Room() {
       },
     });
 
-    //subscibe to user entering leaving
+    //subscibe to new user and chat event
     socket.on(`chat${roomId}`, handleNewChat);
     socket.on(`user${roomId}`, onlineUsers);
 
@@ -75,16 +73,18 @@ function Room() {
       <div className="chat-container h-25">
         <div className="chat-container text-start w-100">
           <RoomChat chats={chats} />
-          <div className="user-box">
+          <div className="user-box bg-light">
             <h2 className="text-center">Users</h2>
-            {users.map((user, i) => {
-              return (
-                <div key={i} className="message bg-light">
-                  <span className="logged-in p-2">●</span>
-                  {user.username}
-                </div>
-              );
-            })}
+            <ul className="user-list">
+              {users.map((user, i) => {
+                return (
+                  <li key={i} className="message">
+                    <span className="logged-in p-2">●</span>
+                    {user.username}
+                  </li>
+                );
+              })}
+            </ul>
             <Link
               to="/"
               className="exit-btn bg-danger text-white text-center mb-0"

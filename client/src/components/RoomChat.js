@@ -40,6 +40,7 @@ function RoomChat({ chats }) {
 
   return (
     <div className="chat-box">
+      <div className="messages-background bg-light"/>
       <div className="messages">
         {chats.map((chat, i) => (
           <div

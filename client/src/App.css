@@ -295,7 +295,7 @@ body {
 }
 
 .messages > div {
-  border-bottom: #16161a solid 1px;
+  border-top: #6c6c6c solid 1px;
 }
 
 .message {

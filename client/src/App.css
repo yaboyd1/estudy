@@ -145,6 +145,15 @@ body {
   color: white;
 }
 
+.about-button {
+  transition: transform 0.2s;
+  margin: 3px;
+}
+
+.about-button:hover {
+  transform: scale(1.15);
+}
+
 /* Forum */
 .card {
   cursor: pointer;

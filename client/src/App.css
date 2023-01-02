@@ -25,11 +25,15 @@ body {
 }
 
 .logo {
-  max-width: 120px;
+  width: 150px;
 }
 
 .logo:hover {
   opacity: 0.6;
+}
+
+.logo-img {
+  width: 50px;
 }
 
 .login-welcome {
@@ -158,6 +162,10 @@ body {
 .card-text span {
   font-size: 1.3rem;
   color: #7c52f1;
+}
+
+.arrow-back:hover {
+  background-color: #7c52f1 !important;
 }
 
 /* Login | Sign up */

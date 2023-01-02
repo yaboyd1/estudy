@@ -2,7 +2,7 @@ const express = require('express');
 const passport = require('../middlewares/authentication');
 const router = express.Router();
 const db = require('../models');
-const { MicroPost } = db;
+const { MicroPost, User } = db;
 
 // This is a simple example for providing basic CRUD routes for
 // a resource/model. It provides the following:
@@ -18,13 +18,18 @@ const { MicroPost } = db;
 //    /micro_posts comes from the file ./microPosts.js
 
 router.get('/', (req, res) => {
-  MicroPost.findAll({}).then((allPosts) => res.json(allPosts));
+  MicroPost.findAll({
+    include: {
+      model: User,
+      attributes: ['username'],
+    },
+  }).then((allPosts) => res.json(allPosts));
 });
 
 router.post('/', passport.isAuthenticated(), (req, res) => {
   let { content } = req.body;
 
-  MicroPost.create({ content })
+  MicroPost.create({ userId: req.user.id, content: content })
     .then((newPost) => {
       res.status(201).json(newPost);
     })

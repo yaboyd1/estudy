@@ -1,10 +1,10 @@
-const { Model } = require("sequelize");
-const bcrypt = require("bcryptjs");
+const { Model } = require('sequelize');
+const bcrypt = require('bcryptjs');
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     getFullname() {
-      return [this.firstName, this.lastName].join(" ");
+      return [this.firstName, this.lastName].join(' ');
     }
   }
 
@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       passwordHash: { type: DataTypes.STRING },
-      role: { 
+      role: {
         type: DataTypes.STRING,
         isIn: [['admin', 'participant']],
       },
@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           isLongEnough: (val) => {
             if (val.length < 7) {
-              throw new Error("Please choose a longer password");
+              throw new Error('Please choose a longer password');
             }
           },
         },
@@ -33,15 +33,18 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "User",
+      modelName: 'User',
     }
   );
 
   User.associate = (models) => {
     User.belongsTo(models.Room, {
-      foreignKey: 'roomId'
+      foreignKey: 'roomId',
     });
     User.hasMany(models.RoomChat, {
+      foreignKey: 'userId',
+    });
+    User.hasMany(models.MicroPost, {
       foreignKey: 'userId',
     });
   };

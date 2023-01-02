@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, NavLink } from 'react-router-dom';
 import ErrorAlert from '../components/ErrorAlert';
+import { useAuth } from '../context/AuthContext';
 
 function PostFormPage() {
   const [content, setContent] = useState('');
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
-
   const handleContentChange = (event) => {
     setContent(event.target.value);
   };
@@ -36,7 +36,7 @@ function PostFormPage() {
     }
   };
 
-  if (success) return <Navigate to="/post/new" />;
+  if (success) return <Navigate to="./posts" />;
 
   return (
     <div className="d-flex justify-content-center mt-4">
@@ -46,17 +46,20 @@ function PostFormPage() {
           <div className="input-group">
             <input
               type="text"
-              placeholder="Type your message here..."
+              placeholder="Ask Question..."
               value={content}
               className="form-control"
               onChange={handleContentChange}
               autoFocus
             />
             <button type="submit" className="btn btn-primary">
-              Submit Post
+              Submit
             </button>
           </div>
         </form>
+        <div className="mt-3">
+          <NavLink to="./posts">Want to see forum questions?</NavLink>
+        </div>
       </div>
     </div>
   );

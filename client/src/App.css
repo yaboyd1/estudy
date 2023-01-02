@@ -235,11 +235,16 @@ body {
   max-width: 400px;
 }
 
-/* .quiz-btn {
-  border-radius: 0;
-  width: 250px !important;
-  border: rgb(30, 143, 209) solid 2px;
-} */
+@media (max-width: 500px) {
+  .quiz-btn {
+    margin:5px 0 !important; 
+  }
+
+}
+
+.quiz-btn {
+  margin:15px 0;
+} 
 
 /* .btn-next-question {
   position: absolute;
@@ -254,7 +259,7 @@ body {
   border-radius: 0;
 }  */
 
-/* .count {
+.count {
   align-self: flex-start;
   position: absolute;
   right: 10px;
@@ -262,7 +267,7 @@ body {
   font-size: 24px;
   border: 4px solid #7f5af0b4;
   padding: 5px;
-} */
+}
 
 .chat-container {
   display: flex;

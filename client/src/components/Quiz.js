@@ -66,8 +66,7 @@ function Quiz() {
             Next Question
           </button>
         </div>
-        {/* 
-        <div className="count">Score:{count}</div> */}
+        <div className="count">Score:{count}</div>
       </div>
     </div>
   );

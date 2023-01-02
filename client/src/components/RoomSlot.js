@@ -25,13 +25,13 @@ function RoomSlot({ name, desc, id }) {
 
   return (
     <div className="rooms d-flex mx-auto col-10 col-md-8 col-lg-7 bg-light w-100">
-      <div className="mx-auto card mb-4 mt-4 border">
+      <div className="w-75 mx-auto card mb-4 mt-4 border">
         <Link className="card-text" onClick={onClickLink} to={path}>
           <div className="card-body card-text text-center">
             <span>{name}</span>
           </div>
         </Link>
-        <div className="card-footer small text-end">{desc}</div>
+        <div className="card-footer small text-center">{desc}</div>
       </div>
     </div>
   );

@@ -16,6 +16,7 @@ import Room from './pages/Room';
 import './App.css';
 import PrivateRouteRequiresAuth from './components/PrivateRouteRequiresAuth';
 import ListOfRooms from './pages/ListOfRooms';
+import Friends from './pages/Friends';
 
 function Navigation() {
   const auth = useAuth();
@@ -23,11 +24,14 @@ function Navigation() {
     <nav className=" navbar navbar-expand-sm navbar-dark">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
-          <img
-            className="logo"
-            src={require('./imgs/estudy_logo.png')}
-            alt=""
-          />
+          <div className="d-flex align-items-center logo">
+            <img
+              className="logo-img rounded-5"
+              src={require('./imgs/logo.png')}
+              alt="logo"
+            />
+            <h3 className="ms-2">e-Study</h3>
+          </div>
         </Link>
         <Greeting />
         <div className="dropdown">
@@ -43,7 +47,9 @@ function Navigation() {
             {auth.isAuthenticated && (
               <>
                 <li className="nav-item">
-                  <NavLink className="nav-link">Friends</NavLink>
+                  <NavLink className="nav-link" to="/friends">
+                    Friends
+                  </NavLink>
                 </li>
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/achievements">
@@ -51,7 +57,7 @@ function Navigation() {
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/posts/new">
+                  <NavLink className="nav-link" to="/forum">
                     Forum
                   </NavLink>
                 </li>
@@ -86,6 +92,14 @@ function App() {
           <Routes>
             <Route path="/login" element={<LoginPage />} />
             <Route
+              path="/friends"
+              element={
+                <PrivateRouteRequiresAuth>
+                  <Friends />
+                </PrivateRouteRequiresAuth>
+              }
+            />
+            <Route
               path="/achievements"
               element={
                 <PrivateRouteRequiresAuth>
@@ -94,7 +108,7 @@ function App() {
               }
             />
             <Route
-              path="/posts/new"
+              path="/forum"
               element={
                 <PrivateRouteRequiresAuth>
                   {/* In react-router v6 we protect routes like this */}
@@ -128,10 +142,10 @@ function App() {
             />
             <Route path="/room/:id" element={<Room />} />
             <Route path="/signup" element={<SignupPage />} />
-            <Route path="/posts/:id" element={<ShowPostPage />} />
+            <Route path="/forum/posts/post/:id" element={<ShowPostPage />} />
             <Route path="/about-us" element={<AboutUsPage />} />
             <Route path="/" element={<Home />} />
-            <Route path="/post/new" element={<PostsListPage />} />
+            <Route path="/forum/posts/" element={<PostsListPage />} />
           </Routes>
         </div>
       </BrowserRouter>

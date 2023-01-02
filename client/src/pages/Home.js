@@ -65,9 +65,30 @@ function Home() {
             <br />
           </div>
 
-          <footer>
+          <footer className="mb-3">
             <figcaption className="text-center">
-              Photos Designed by pch.vector / Freepik
+              <h6>Image Credits:</h6>
+              <div className="mx-auto w-25 text-start">
+                <a href="https://www.freepik.com/free-vector/open-book-icon-education-symbol-flat-design-vector-illustration_18234114.htm#page=2&query=e%20learning%20logo&position=42&from_view=keyword">
+                  Image by rawpixel.com
+                </a>{' '}
+                on Freepik
+                <br />
+                <a href="https://www.freepik.com/free-vector/online-tutorials-concept_7915189.htm#query=e%20learning&position=4&from_view=keyword">
+                  Image by pikisuperstar
+                </a>{' '}
+                on Freepik
+                <br />
+                <a href="https://www.freepik.com/free-vector/online-education-teacher-students-webinar-via-video-conference-internet-connection-female-tutor-conduct-lesson-through-laptop-screen-people-distant-school-training-line-art-vector-illustration_24025496.htm#query=home%20training&position=0&from_view=keyword">
+                  Image by upklyak
+                </a>{' '}
+                on Freepik
+                <br />
+                <a href="https://www.freepik.com/free-vector/female-student-listening-webinar-online_9175118.htm#&position=25&from_view=author">
+                  Image by pch.vector
+                </a>{' '}
+                on Freepik
+              </div>
             </figcaption>
           </footer>
         </div>

@@ -216,37 +216,32 @@ body {
 
 .quiz {
   border: 4px rgb(53, 151, 181) solid;
-  width: 30%;
   position: relative;
 }
 
 .quiz-board {
-  text-align: center;
-  width: 100%;
-  height: 20%;
-  position: absolute;
-  top: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
-.quiz-questions {
+/* .quiz-questions {
   display: flex;
   justify-content: start;
   margin-left: 5px;
-}
+} */
 
 .quiz-btns {
-  max-width: 100%;
-  display: flex;
-  justify-content: space-around;
+  max-width: 400px;
 }
 
-.quiz-btn {
+/* .quiz-btn {
   border-radius: 0;
   width: 250px !important;
   border: rgb(30, 143, 209) solid 2px;
-}
+} */
 
-.btn-next-question {
+/* .btn-next-question {
   position: absolute;
   bottom: 0px;
   width: 140px;
@@ -257,9 +252,9 @@ body {
   right: 0;
   text-align: center;
   border-radius: 0;
-}
+}  */
 
-.count {
+/* .count {
   align-self: flex-start;
   position: absolute;
   right: 10px;
@@ -267,7 +262,7 @@ body {
   font-size: 24px;
   border: 4px solid #7f5af0b4;
   padding: 5px;
-}
+} */
 
 .chat-container {
   display: flex;
@@ -316,12 +311,21 @@ body {
 }
 
 .message {
+  text-overflow: ellipsis;
   overflow: hidden;
   color: #353436;
 }
 
+.message-content {
+  word-break: break-all;
+}
+
 .messages-background {
   flex-grow: 1;
+}
+
+.message-time {
+  white-space: nowrap;
 }
 
 .message-time-sent {

@@ -55,19 +55,19 @@ function Quiz() {
 
   return (
     <div className="quiz-container p-0 h-75">
-      <div className="quiz w-100 h-100 d-flex bg-light">
-        <div className="row quiz-board">
-          <h2 className="text-start fs-3 my-3">Trivia Quiz</h2>
-          <hr />
+      <div className="quiz w-100 h-100 bg-light">
+        <div className="d-flex h-100 quiz-board">
+          <h2 className="fs-3 my-3">Trivia Quiz</h2>
           {card}
+          <button
+            onClick={getQuestion}
+            className="btn-next-question btn btn-success mb-4"
+          >
+            Next Question
+          </button>
         </div>
-        <button
-          onClick={getQuestion}
-          className="btn-next-question btn btn-success mb-4"
-        >
-          Next Question
-        </button>
-        <div className="count">Score:{count}</div>
+        {/* 
+        <div className="count">Score:{count}</div> */}
       </div>
     </div>
   );

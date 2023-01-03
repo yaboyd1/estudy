@@ -145,6 +145,15 @@ body {
   color: white;
 }
 
+.about-button {
+  transition: transform 0.2s;
+  margin: 3px;
+}
+
+.about-button:hover {
+  transform: scale(1.15);
+}
+
 /* Forum */
 .card {
   cursor: pointer;
@@ -207,37 +216,37 @@ body {
 
 .quiz {
   border: 4px rgb(53, 151, 181) solid;
-  width: 30%;
   position: relative;
 }
 
 .quiz-board {
-  text-align: center;
-  width: 100%;
-  height: 20%;
-  position: absolute;
-  top: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
-.quiz-questions {
+/* .quiz-questions {
   display: flex;
   justify-content: start;
   margin-left: 5px;
-}
+} */
 
 .quiz-btns {
-  max-width: 100%;
-  display: flex;
-  justify-content: space-around;
+  max-width: 400px;
+}
+
+@media (max-width: 500px) {
+  .quiz-btn {
+    margin:5px 0 !important; 
+  }
+
 }
 
 .quiz-btn {
-  border-radius: 0;
-  width: 250px !important;
-  border: rgb(30, 143, 209) solid 2px;
-}
+  margin:15px 0;
+} 
 
-.btn-next-question {
+/* .btn-next-question {
   position: absolute;
   bottom: 0px;
   width: 140px;
@@ -248,7 +257,7 @@ body {
   right: 0;
   text-align: center;
   border-radius: 0;
-}
+}  */
 
 .count {
   align-self: flex-start;
@@ -307,12 +316,21 @@ body {
 }
 
 .message {
+  text-overflow: ellipsis;
   overflow: hidden;
   color: #353436;
 }
 
+.message-content {
+  word-break: break-all;
+}
+
 .messages-background {
   flex-grow: 1;
+}
+
+.message-time {
+  white-space: nowrap;
 }
 
 .message-time-sent {

@@ -5,7 +5,7 @@ function MicroPostCard({ content, createdAt, id, username, onPost = false }) {
   return (
     <div className="mt-4 mx-auto col-10 col-md-8 col-lg-7">
       {!onPost && (
-        <Link className="card-text" to={'./post/' + id}>
+        <Link className="card-text" to={'/forum/posts/post/' + id}>
           <div className="card mb-4 shadow">
             <div className="card-body card-text">
               <span>{username}</span>:    

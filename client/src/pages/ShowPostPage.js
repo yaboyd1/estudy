@@ -92,8 +92,6 @@ function ShowPostPage() {
     );
   if (loading) return <LoadingSpinner />;
 
-  console.log(posts);
-
   return (
     <>
       <div className="text-start">

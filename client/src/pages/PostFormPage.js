@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Navigate, NavLink } from 'react-router-dom';
 import ErrorAlert from '../components/ErrorAlert';
-import { useAuth } from '../context/AuthContext';
 
 function PostFormPage() {
   const [content, setContent] = useState('');

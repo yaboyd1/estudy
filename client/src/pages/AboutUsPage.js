@@ -1,5 +1,5 @@
 import React from 'react';
-import PersonIcon from'../components/PersonIcon';
+import PersonIcon from '../components/PersonIcon';
 function AboutUsPage() {
   return (
     <>
@@ -24,16 +24,11 @@ function AboutUsPage() {
             <h3>Kevin do Canto</h3>
             <div className="d-flex">
               <div>
-                <img
-                  className="rounded-5 border border-3 mt-4"
-                  style={{ width: '200px', height: '300px' }}
-                  src={require('../imgs/kevin_pp.png')}
-                  alt="profile"
-                />
+                <PersonIcon />
                 <div className="mt-3">
                   <a href="https://www.linkedin.com/in/kevin-d-93615a180/">
                     <img
-                      className="about-button" 
+                      className="about-button"
                       style={{ width: '30px' }}
                       src={require('../imgs/linkedIn_logo.png')}
                       alt=""
@@ -41,7 +36,7 @@ function AboutUsPage() {
                   </a>
                   <a href="https://github.com/KevinDocanto">
                     <img
-                      className="about-button" 
+                      className="about-button"
                       style={{ width: '30px' }}
                       src={require('../imgs/github_logo.png')}
                       alt=""
@@ -66,7 +61,7 @@ function AboutUsPage() {
                 <div className="mt-3">
                   <a href="https://www.linkedin.com/in/seunghoon-shin-8115b5224/">
                     <img
-                      className="about-button" 
+                      className="about-button"
                       style={{ width: '30px' }}
                       src={require('../imgs/linkedIn_logo.png')}
                       alt=""
@@ -74,7 +69,7 @@ function AboutUsPage() {
                   </a>
                   <a href="https://github.com/shino022">
                     <img
-                      className="about-button" 
+                      className="about-button"
                       style={{ width: '30px' }}
                       src={require('../imgs/github_logo.png')}
                       alt=""
@@ -84,10 +79,11 @@ function AboutUsPage() {
               </div>
 
               <p className="ms-3 text-start mt-4">
-                Hello! I'm SeungHoon Shin.
-                I’ve just graduated from Queens College majoring in Computer Science.
-                I love exploring and learning new things.
-                Currently, I'm studying web development and looking for opportunities where I can learn and grow as a software engineer.
+                Hello! I'm SeungHoon Shin. I’ve just graduated from Queens
+                College majoring in Computer Science. I love exploring and
+                learning new things. Currently, I'm studying web development and
+                looking for opportunities where I can learn and grow as a
+                software engineer.
               </p>
             </div>
           </div>

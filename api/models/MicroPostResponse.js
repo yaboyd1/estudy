@@ -2,9 +2,9 @@
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class MicroPost extends Model {}
+  class MicroPostResponse extends Model {}
 
-  MicroPost.init(
+  MicroPostResponse.init(
     {
       content: {
         type: DataTypes.STRING,
@@ -16,19 +16,19 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: 'MicroPost',
+      modelName: 'MicroPostResponse',
     }
   );
 
-  MicroPost.associate = (models) => {
+  MicroPostResponse.associate = (models) => {
     // associations can be defined here
-    MicroPost.belongsTo(models.User, {
+    MicroPostResponse.belongsTo(models.User, {
       foreignKey: 'userId',
     });
-    MicroPost.hasMany(models.MicroPostResponse, {
+    MicroPostResponse.belongsTo(models.MicroPost, {
       foreignKey: 'microPostId',
     });
   };
 
-  return MicroPost;
+  return MicroPostResponse;
 };

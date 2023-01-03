@@ -57,7 +57,25 @@ function PostFormPage() {
           </div>
         </form>
         <div className="mt-3">
-          <NavLink to="./posts">Want to see forum questions?</NavLink>
+          <button className="btn-session rounded">
+            <NavLink
+              className="text-white"
+              style={{ textDecoration: 'none' }}
+              to="./my-posts"
+            >
+              My Posts
+            </NavLink>
+          </button>
+          <br />
+          <button className="btn-session rounded">
+            <NavLink
+              className="text-white"
+              style={{ textDecoration: 'none' }}
+              to="./posts"
+            >
+              Want to see forum questions?
+            </NavLink>
+          </button>
         </div>
       </div>
     </div>

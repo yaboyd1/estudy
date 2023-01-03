@@ -17,6 +17,7 @@ import './App.css';
 import PrivateRouteRequiresAuth from './components/PrivateRouteRequiresAuth';
 import ListOfRooms from './pages/ListOfRooms';
 import Friends from './pages/Friends';
+import MyPosts from './pages/MyPosts';
 
 function Navigation() {
   const auth = useAuth();
@@ -113,6 +114,14 @@ function App() {
                 <PrivateRouteRequiresAuth>
                   {/* In react-router v6 we protect routes like this */}
                   <PostFormPage />
+                </PrivateRouteRequiresAuth>
+              }
+            />
+            <Route
+              path="forum/my-posts"
+              element={
+                <PrivateRouteRequiresAuth>
+                  <MyPosts />
                 </PrivateRouteRequiresAuth>
               }
             />

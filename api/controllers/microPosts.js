@@ -38,12 +38,32 @@ router.post('/', passport.isAuthenticated(), (req, res) => {
     });
 });
 
-router.get('/:id', passport.isAuthenticated(), async (req, res) => {
+router.get('/:id', passport.isAuthenticated(), (req, res) => {
   const { id } = req.params;
 
   MicroPost.findOne({
     where: {
       id: id,
+    },
+    include: {
+      model: User,
+      attributes: ['username'],
+    },
+  }).then((mpost) => {
+    if (!mpost) {
+      return res.sendStatus(404);
+    }
+
+    res.json(mpost);
+  });
+});
+
+router.get('/my-posts/:userId', passport.isAuthenticated(), (req, res) => {
+  const userId = req.user.id;
+
+  MicroPost.findAll({
+    where: {
+      userId: userId,
     },
     include: {
       model: User,

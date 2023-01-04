@@ -33,16 +33,14 @@ function MyPosts() {
   }, []);
 
   let noPosts = '';
-  if (posts.length === 0) noPosts = 'You did not made any posts yet!';
+  if (posts.length === 0) noPosts = 'You did not make any post yet!';
   if (error) return <ErrorAlert details="Failed to fetch all micro posts" />;
   if (loading) return <LoadingSpinner />;
 
-  console.log(posts);
-
   return (
     <>
-      <div>{noPosts}</div>
-      <h1 className="text-white mt-3">Your posts</h1>);
+      <h1 className="text-white mt-3">Your posts</h1>
+      <div className="text-white">{noPosts}</div>
       <div className="text-start">
         <button className="arrow-back mt-3 bg-light rounded-5">
           <NavLink className="nav-link" to="/forum">
